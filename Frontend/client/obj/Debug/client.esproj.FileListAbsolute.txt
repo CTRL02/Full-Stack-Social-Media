@@ -1,1 +1,2 @@
 C:\Users\10\source\repos\socialmedia\client\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\10\source\repos\socialmedia\Frontend\client\obj\Debug\client.esproj.CoreCompileInputs.cache

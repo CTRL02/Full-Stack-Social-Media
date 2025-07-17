@@ -2,18 +2,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "edge",
-      "request": "launch",
-      "name": "localhost (Edge)",
-      "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
       "type": "chrome",
       "request": "launch",
-      "name": "localhost (Chrome)",
-      "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}"
+      "name": "Angular (Chrome HTTPS)",
+      "url": "https://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "trace": true,
+      "disableExtensions": true,
+      "args": [
+        "--ignore-certificate-errors"
+      ]
+    },
+    {
+      "type": "edge",
+      "request": "launch",
+      "name": "Angular (Edge HTTPS)",
+      "url": "https://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "trace": true,
+      "disableExtensions": true,
+      "args": [
+        "--ignore-certificate-errors"
+      ]
     }
   ]
 }
