@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\socialmedia\\",
+  "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\socialmedia\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\socialmedia\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -23,27 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\socialmedia\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "socialmedia\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\socialmedia\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "socialmedia\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Program.cs",
+              "RelativeDocumentMoniker": "socialmedia\\Program.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Program.cs",
+              "RelativeToolTip": "socialmedia\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T16:29:13.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\socialmedia\\Entities\\AppUser.cs",
-              "RelativeDocumentMoniker": "socialmedia\\Entities\\AppUser.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\socialmedia\\Entities\\AppUser.cs",
-              "RelativeToolTip": "socialmedia\\Entities\\AppUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T16:20:41.402Z",
+              "WhenOpened": "2025-07-17T18:04:06.783Z",
               "EditorCaption": ""
             },
             {
@@ -57,6 +48,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "socialmedia\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "socialmedia\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:29:13.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Entities\\AppUser.cs",
+              "RelativeDocumentMoniker": "socialmedia\\Entities\\AppUser.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Entities\\AppUser.cs",
+              "RelativeToolTip": "socialmedia\\Entities\\AppUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:20:41.402Z"
             }
           ]
         }

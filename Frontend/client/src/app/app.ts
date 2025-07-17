@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'client';
+  constructor(private HttpClient: HttpClient) { }
 }
