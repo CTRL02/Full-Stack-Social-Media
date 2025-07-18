@@ -3,16 +3,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>LaunchJsonDebugger</DebuggerFlavor>
     <LaunchJsonTarget>{
-  "name": "Angular (Edge HTTPS)",
+  "name": "Angular (Edge HTTP)",
   "type": "edge",
   "request": "launch",
-  "url": "https://localhost:4200",
+  "url": "http://localhost:4200",
   "webRoot": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client",
   "trace": true,
-  "disableExtensions": true,
-  "args": [
-    "--ignore-certificate-errors"
-  ]
+  "disableExtensions": true
 }</LaunchJsonTarget>
   </PropertyGroup>
 </Project>

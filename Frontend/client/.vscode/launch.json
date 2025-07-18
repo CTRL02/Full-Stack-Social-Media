@@ -4,26 +4,20 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Angular (Chrome HTTPS)",
-      "url": "https://localhost:4200",
+      "name": "Angular (Chrome HTTP)",
+      "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}",
       "trace": true,
-      "disableExtensions": true,
-      "args": [
-        "--ignore-certificate-errors"
-      ]
+      "disableExtensions": true
     },
     {
       "type": "edge",
       "request": "launch",
-      "name": "Angular (Edge HTTPS)",
-      "url": "https://localhost:4200",
+      "name": "Angular (Edge HTTP)",
+      "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}",
       "trace": true,
-      "disableExtensions": true,
-      "args": [
-        "--ignore-certificate-errors"
-      ]
+      "disableExtensions": true
     }
   ]
 }

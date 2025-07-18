@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg px-3 py-2 shadow" style="background-color: #0d3b66; border-radius: 10px;">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand text-white fw-bold" href="#">socialApp</a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- Left nav items -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="user$ | async">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#"><i class="fas fa-home me-1"></i>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#"><i class="fas fa-envelope me-1"></i>Messages</a>
+        </li>
+      </ul>
+
+      <!-- Search bar -->
+      <form class="d-flex mx-auto" style="max-width: 500px; flex: 1;" *ngIf="user$ | async">
+        <input class="form-control rounded-pill bg-light bg-opacity-75 border-0 px-4" type="search"
+               placeholder="Search" aria-label="Search">
+      </form>
+
+      <!-- Profile dropdown -->
+      <ul class="navbar-nav ms-auto" *ngIf="user$ | async">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user me-1"></i>{{(user$ | async)?.username}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Login form if not authenticated -->
+      <!-- Login form if not authenticated -->
+      <form class="d-flex align-items-center gap-2 ms-auto" *ngIf="(user$ | async)=== null" style="min-width: 500px;">
+        <input type="text" class="form-control form-control-sm" placeholder="Username"
+               [(ngModel)]="authData.username" name="username">
+        <input type="password" class="form-control form-control-sm" placeholder="Password"
+               [(ngModel)]="authData.password" name="password">
+
+        <button type="button" class="btn btn-light btn-sm"
+                (click)="isRegisterMode ? register() : login()">
+          {{ isRegisterMode ? 'Register' : 'Login' }}
+        </button>
+
+        <small class="text-white text-nowrap">
+          {{ isRegisterMode ? 'Have an account?' : 'New user?' }}
+          <a href="#" class="text-decoration-underline text-light" (click)="toggleMode($event)">
+            {{ isRegisterMode ? 'Login' : 'Register' }}
+          </a>
+        </small>
+      </form>
+
+      <!-- Error message below navbar -->
+      <div *ngIf="errorMsg" class="text-danger small text-start px-3 mt-1">
+        {{ errorMsg }}
+      </div>
+
+
+
+
+    </div>
+  </div>
+</nav>
