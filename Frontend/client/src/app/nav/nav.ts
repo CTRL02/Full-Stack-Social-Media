@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { authModel } from '../models/authmodel';
 import { Account } from '../services/account';
 import { Observable } from 'rxjs';
@@ -12,13 +12,34 @@ import { userModel } from '../models/user';
 })
 export class Nav {
   authData: authModel = { username: '', password: '' };
-  isRegisterMode = false;
   errorMsg = '';
 
   user$: Observable<userModel | null>; 
 
-  constructor(private authServ: Account) {
+  constructor(private authServ: Account, private renderer: Renderer2) {
     this.user$ = this.authServ.CurrentUser$;  
+  }
+
+
+  ngOnInit(): void {
+    // Ensure initial scroll state is checked
+    this.handleScroll();
+  }    
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.handleScroll();
+  }
+
+  handleScroll(): void {
+    const nav = document.querySelector('.scrolling-navbar');
+    if (nav) {
+      if (window.scrollY > 100) {
+        this.renderer.addClass(nav, 'scrolled');
+      } else {
+        this.renderer.removeClass(nav, 'scrolled');
+      }
+    }
   }
 
   login() {
@@ -48,12 +69,7 @@ export class Nav {
     this.authServ.setCurrentUser(null);
   }
 
-  register() {
-    // Add logic
-  }
 
-  toggleMode(event: Event) {
-    event.preventDefault();
-    this.isRegisterMode = !this.isRegisterMode;
-  }
+
+ 
 }

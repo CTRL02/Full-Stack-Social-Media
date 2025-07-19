@@ -38,6 +38,9 @@ namespace socialmedia.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("avatar")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");

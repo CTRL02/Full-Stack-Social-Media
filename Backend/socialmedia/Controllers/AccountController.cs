@@ -38,6 +38,7 @@ namespace socialmedia.Controllers
             var user = new AppUser
             {
                 UserName = dto.Username.ToLower(),
+                avatar = dto.avatar,
                 PasswordSalt = hmac.Key,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password))
             };

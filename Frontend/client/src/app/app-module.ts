@@ -7,11 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Nav } from './nav/nav';
 import {FormsModule} from '@angular/forms';
 import { authModel } from './models/authmodel';
+import { Home } from './home/home';
+import { Footer } from './footer/footer';
+
 
 @NgModule({
   declarations: [
     App,
-    Nav
+    Nav,
+    Home,
+    Footer
     
   ],
   imports: [
@@ -20,6 +25,7 @@ import { authModel } from './models/authmodel';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+
 
   ],
   providers: [

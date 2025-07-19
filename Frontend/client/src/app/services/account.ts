@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { authModel } from '../models/authmodel';
 import { map, ReplaySubject } from 'rxjs';
 import { userModel  } from '../models/user';
+import { registerUser } from '../models/registerUser';
 @Injectable({
   providedIn: 'root'
 })
 export class Account {
-  baseUrl = 'http://localhost:5080/api/';
+  baseUrl = 'http://localhost:5080/api/Account/';
   constructor(private http: HttpClient) { }
   private currentUser = new ReplaySubject<userModel|null>(1);
   CurrentUser$ = this.currentUser.asObservable();
@@ -16,7 +17,7 @@ export class Account {
 
   
   login(logModel: authModel) {
-    return this.http.post<userModel>(this.baseUrl + 'Account/login', logModel).pipe(
+    return this.http.post<userModel>(this.baseUrl + 'login', logModel).pipe(
       map((user: userModel) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user)); 
@@ -33,8 +34,16 @@ export class Account {
   }
 
 
-  register() {
-    // Implement your registration logic here
-    console.log('Registering...');
+  register(regModel: registerUser) {
+    return this.http.post<userModel>(this.baseUrl + 'register', regModel).pipe(
+      map((user: userModel) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('token', user.token);
+          this.currentUser.next(user);
+        }
+        return user;
+      })
+    );
   }
 }

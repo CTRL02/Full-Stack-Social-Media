@@ -8,6 +8,7 @@ namespace socialmedia.DTOs
         [MinLength(5, ErrorMessage = "Username must be at least 5 characters")]
         public string Username { get; set; }
 
+        public string? avatar { get; set; }
         [Required(ErrorMessage = "Password is required")]
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
         public string Password { get; set; }
