@@ -1,0 +1,48 @@
+<div class="chat-popup-window" [class.minimized]="isMinimized">
+  <div class="chat-header">
+    <span>Messages</span>
+    <div class="chat-controls">
+      <button (click)="toggleMinimize()">_</button>
+      <button (click)="closeChat()">×</button>
+    </div>
+  </div>
+
+  <div class="chat-body" *ngIf="!isMinimized">
+    <!-- Sidebar: List of Chats -->
+    <div class="chat-sidebar">
+      <div class="chat-user"
+           *ngFor="let chat of dummyChats"
+           (click)="selectChat(chat)"
+           [class.active]="chat === selectedChat">
+        {{ chat.username }}
+      </div>
+    </div>
+
+    <!-- Chat Content -->
+    <div class="chat-content">
+      <div *ngIf="selectedChat">
+        <h6 class="text-muted">{{ selectedChat.username }}</h6>
+        <div class="messages">
+          <div *ngFor="let msg of selectedChat.messages" class="message">
+            <span [class.self]="msg.self">{{ msg.text }}</span>
+          </div>
+        </div>
+
+        <!-- New message form -->
+        <form class="message-input" (submit)="sendMessage()">
+          <input type="text"
+                 [(ngModel)]="newMessage"
+                 name="message"
+                 class="form-control"
+                 placeholder="Type a message..."
+                 required />
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+
+      <div *ngIf="!selectedChat" class="no-chat">
+        Select a chat to start messaging.
+      </div>
+    </div>
+  </div>
+</div>

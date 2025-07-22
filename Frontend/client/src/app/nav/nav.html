@@ -1,9 +1,12 @@
 <div class="navbar-wrapper px-3 pt-2">
   <!-- optional padding -->
-  <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar"  [ngClass]="{
+        'overlay-navbar': isHomePage && !(user$ | async),
+        'solid-navbar': !isHomePage || (user$ | async)
+     }">
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="navbar-brand text-white fw-bold" href="#">socialApp</a>
+      <a class="navbar-brand text-white fw-bold" routerLink="">socialApp</a>
 
       <!-- Toggler -->
       <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
@@ -18,34 +21,52 @@
         <!-- Left nav items -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="user$ | async">
           <li class="nav-item">
-            <a class="nav-link text-white" href="#"><i class="fas fa-home me-1"></i>Home</a>
+            <a class="nav-link text-white" routerLink=""><i class="fas fa-home me-1"></i>Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#"><i class="fas fa-envelope me-1"></i>Messages</a>
+            <a class="nav-link text-white" (click)="openMessages()"><i class="fas fa-envelope me-1"></i>Messages</a>
           </li>
         </ul>
 
         <!-- Search bar -->
-        <form class="d-flex mx-auto" style="max-width: 500px; flex: 1;" *ngIf="user$ | async">
-          <input class="form-control rounded-pill bg-light bg-opacity-75 border-0 px-4" type="search"
-                 placeholder="Search" aria-label="Search">
-        </form>
+        <div class="position-relative mx-auto" style="max-width: 500px; flex: 1;" *ngIf="user$ | async">
+          <input type="text"
+                 class="form-control rounded-pill bg-light bg-opacity-75 border-0 px-4"
+                 placeholder="Search users..."
+                 aria-label="Search"
+                 [(ngModel)]="searchTerm"
+                 (input)="onSearch()"
+                 (focus)="showSearchResults = true"
+                 (blur)="hideResultsWithDelay()"
+                 autocomplete="off" />
+
+          <ul class="dropdown-menu show search-results mt-1"
+              *ngIf="filteredUsers.length && showSearchResults"
+              style="position: absolute; top: 100%; left: 0; width: 100%; z-index: 10000;">
+            <li *ngFor="let user of filteredUsers"
+                class="dropdown-item d-flex align-items-center"
+                (mousedown)="goToUserProfile(user)">
+              <img [src]="user.avatar" class="rounded-circle me-2" width="30" height="30" />
+              <span>{{ user.username }}</span>
+            </li>
+          </ul>
+        </div>
+
 
         <!-- Profile dropdown -->
         <ul class="navbar-nav ms-auto" *ngIf="user$ | async">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button"
+            <a class="nav-link dropdown-toggle text-white" id="profileDropdown" role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-user me-1"></i>{{(user$ | async)?.username}}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" (click)="getProfileLink()">Profile</a></li>
               <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
             </ul>
           </li>
         </ul>
 
-        <!-- Login form if not authenticated -->
         <!-- Login form if not authenticated -->
         <form class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 ms-auto"
               *ngIf="(user$ | async) === null"

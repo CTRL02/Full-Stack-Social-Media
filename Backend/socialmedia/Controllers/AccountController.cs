@@ -54,7 +54,7 @@ namespace socialmedia.Controllers
 
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login(RegisterDto dto)
+        public async Task<ActionResult<UserDto>> Login(loginDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -9,6 +9,9 @@ import {FormsModule} from '@angular/forms';
 import { authModel } from './models/authmodel';
 import { Home } from './home/home';
 import { Footer } from './footer/footer';
+import { MemeberProfile } from './memeber-profile/memeber-profile';
+import { Messages } from './messages/messages';
+import { Feed } from './feed/feed';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { Footer } from './footer/footer';
     App,
     Nav,
     Home,
-    Footer
+    Footer,
+    MemeberProfile,
+    Messages,
+    Feed
     
   ],
   imports: [

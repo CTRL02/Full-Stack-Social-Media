@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+body.with-navbar .main-content {
+  padding-top: 70px; /* or match your navbar height */
+}
+
+body.home-no-navbar .main-content {
+  padding-top: 0;
+}

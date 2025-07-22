@@ -2,9 +2,10 @@
 
 <app-nav></app-nav>
 
-<div class="mainContainer">
+<div class="main-content">
 
-  <app-home></app-home>
+  <router-outlet></router-outlet>
+  <app-messages *ngIf="showMessages$ | async"></app-messages>
 
 </div>
 
