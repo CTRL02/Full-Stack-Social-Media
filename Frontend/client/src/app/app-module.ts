@@ -12,6 +12,7 @@ import { Footer } from './footer/footer';
 import { MemeberProfile } from './memeber-profile/memeber-profile';
 import { Messages } from './messages/messages';
 import { Feed } from './feed/feed';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -31,6 +32,11 @@ import { Feed } from './feed/feed';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
 
 
   ],

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../services/user';
 import { Account } from '../services/account';
 import { NgForm } from '@angular/forms';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class Home {
   model: registerUser = ({ username: '', avatar: '', password: '' });
   errorMsg: string = '';
 
-  constructor(private userService: User, private accountService: Account) { }
+  constructor(private userService: User, private accountService: Account, private toastr: ToastrService) { }
 
   contentItems = [
     {
@@ -86,17 +87,17 @@ export class Home {
     this.accountService.register(this.model).subscribe({
       next: user => {
         if (user) {
-          console.log('registered as user and logged in:', user);
+          this.toastr.success('Registration successful as ' + user.username);
         }
         this.errorMsg = '';
       },
       error: err => {
         if (err.status === 400) {
-          this.errorMsg = 'Please enter valid data.';
+          this.toastr.error('Please enter valid data.');
         } else if (err.status === 401) {
-          this.errorMsg = 'Invalid username or password.';
+          this.toastr.error('Invalid username or password.');
         } else {
-          this.errorMsg = 'An unexpected error occurred.';
+          this.toastr.error("An unexpected error occurred.");
         }
       }
     });

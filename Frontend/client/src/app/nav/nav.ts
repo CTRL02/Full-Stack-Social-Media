@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { UiFunctions } from '../services/ui-functions';
 import { allUsersModel } from '../models/allusersModel';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +18,6 @@ import { allUsersModel } from '../models/allusersModel';
 })
 export class Nav {
   authData: authModel = { username: '', password: '' };
-  errorMsg = '';
   currUserId:number|null = 0;
   user$: Observable<userModel | null>; 
   isLoggedIn = false;
@@ -28,7 +28,7 @@ export class Nav {
   allUsers: allUsersModel[] = [];
   showSearchResults = false;
 
-  constructor(private authServ: Account, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions) {
+  constructor(private authServ: Account, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
     this.user$ = this.authServ.CurrentUser$;  
   }
 
@@ -124,34 +124,33 @@ export class Nav {
     }
   }
 
-
-
   login() {
     this.authServ.login(this.authData).subscribe({
       next: user => {
         if (user) {
-          console.log('Logged in user:', user);
-          this.router.navigate(['/']);
+          this.toastr.success('Login successful!', 'Welcome');
+          this.router.navigate(['/feed']);
         }
-        this.errorMsg = '';
       },
       error: err => {
         if (err.status === 400) {
-          this.errorMsg = 'Please enter valid data.';
+          this.toastr.warning('Please enter valid data.', 'Validation Error');
         } else if (err.status === 401) {
-          this.errorMsg = 'Invalid username or password.';
+          this.toastr.error('Invalid username or password.', 'Login Failed');
         } else {
-          this.errorMsg = 'An unexpected error occurred.';
+          this.toastr.error('An unexpected error occurred.', 'Error');
         }
       }
     });
   }
+
 
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.authData = { username: '', password: '' };
     this.authServ.setCurrentUser(null);
+    this.router.navigate(['/']);
   }
 
 

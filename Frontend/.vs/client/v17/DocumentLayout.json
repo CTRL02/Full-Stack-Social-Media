@@ -3,52 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\nav\\nav.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\nav\\nav.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\app-routing-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\app-routing-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\app-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\app-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\models\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\models\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\home\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\home\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\models\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\models\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\models\\registeruser.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\models\\registeruser.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\messages\\messages.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\messages\\messages.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\app-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\app-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\app-routing-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\app-routing-module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\models\\authmodel.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -63,10 +71,6 @@
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\services\\ui-functions.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\nav\\nav.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\nav\\nav.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -77,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\messages\\messages.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\messages\\messages.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\messages\\messages.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\messages\\messages.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -134,7 +134,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 28,
           "Children": [
             {
               "$type": "Bookmark",
@@ -150,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "memeber-profile.css",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\memeber-profile\\memeber-profile.css",
               "RelativeDocumentMoniker": "client\\src\\app\\memeber-profile\\memeber-profile.css",
@@ -163,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "memeber-profile.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\memeber-profile\\memeber-profile.html",
               "RelativeDocumentMoniker": "client\\src\\app\\memeber-profile\\memeber-profile.html",
@@ -171,12 +171,11 @@
               "RelativeToolTip": "client\\src\\app\\memeber-profile\\memeber-profile.html",
               "ViewState": "AgIAAA8AAAAAAAAAAAAowCYAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-22T10:53:42.951Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T10:53:42.951Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "memeber-profile.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\memeber-profile\\memeber-profile.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\memeber-profile\\memeber-profile.ts",
@@ -189,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "ui-functions.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\ui-functions.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\services\\ui-functions.ts",
@@ -197,24 +196,24 @@
               "RelativeToolTip": "client\\src\\app\\services\\ui-functions.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-21T02:17:17.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-21T02:17:17.39Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 6,
               "Title": "messages.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\messages\\messages.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\messages\\messages.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\messages\\messages.ts",
               "RelativeToolTip": "client\\src\\app\\messages\\messages.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-21T02:06:44.872Z"
+              "WhenOpened": "2025-07-21T02:06:44.872Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "messages.css",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\messages\\messages.css",
               "RelativeDocumentMoniker": "client\\src\\app\\messages\\messages.css",
@@ -274,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "messages.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\messages\\messages.html",
               "RelativeDocumentMoniker": "client\\src\\app\\messages\\messages.html",
@@ -286,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "app-routing-module.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app-routing-module.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\app-routing-module.ts",
@@ -294,12 +293,11 @@
               "RelativeToolTip": "client\\src\\app\\app-routing-module.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-20T21:22:34.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-20T21:22:34.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "user.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\user.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\services\\user.ts",
@@ -307,18 +305,17 @@
               "RelativeToolTip": "client\\src\\app\\services\\user.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-19T21:48:04.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-19T21:48:04.997Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "registerUser.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\registerUser.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\models\\registerUser.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\registerUser.ts",
               "RelativeToolTip": "client\\src\\app\\models\\registerUser.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-07-19T19:27:33.783Z",
               "EditorCaption": ""
@@ -349,25 +346,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 2,
               "Title": "home.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\home\\home.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\home\\home.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\home\\home.ts",
               "RelativeToolTip": "client\\src\\app\\home\\home.ts",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwE4AAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-19T16:41:49.755Z"
+              "WhenOpened": "2025-07-19T16:41:49.755Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "home.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\home\\home.html",
               "RelativeDocumentMoniker": "client\\src\\app\\home\\home.html",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\home\\home.html",
               "RelativeToolTip": "client\\src\\app\\home\\home.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-07-19T16:41:23.292Z",
               "EditorCaption": ""
@@ -386,20 +384,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "user.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\user.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\models\\user.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\user.ts",
               "RelativeToolTip": "client\\src\\app\\models\\user.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-07-18T20:24:57.413Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "account.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\account.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\services\\account.ts",
@@ -407,12 +405,11 @@
               "RelativeToolTip": "client\\src\\app\\services\\account.ts",
               "ViewState": "AgIAAAMAAAAAAAAAAAAgwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-18T16:35:01.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T16:35:01.541Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "authmodel.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\authmodel.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\models\\authmodel.ts",
@@ -420,38 +417,37 @@
               "RelativeToolTip": "client\\src\\app\\models\\authmodel.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-18T18:07:39.187Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T18:07:39.187Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "app-module.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app-module.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\app-module.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app-module.ts",
               "RelativeToolTip": "client\\src\\app\\app-module.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-07-18T16:12:06.87Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "nav.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\nav\\nav.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.ts",
               "RelativeToolTip": "client\\src\\app\\nav\\nav.ts",
-              "ViewState": "AgIAADcAAAAAAAAAAAAgwKMAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAgwI4AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-07-18T14:37:46.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "nav.css",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.css",
               "RelativeDocumentMoniker": "client\\src\\app\\nav\\nav.css",
@@ -463,13 +459,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "nav.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.html",
               "RelativeDocumentMoniker": "client\\src\\app\\nav\\nav.html",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.html",
               "RelativeToolTip": "client\\src\\app\\nav\\nav.html",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAFkAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-07-18T13:36:19.167Z",
               "EditorCaption": ""
@@ -488,13 +484,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "angular.json",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\angular.json",
               "RelativeDocumentMoniker": "client\\angular.json",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\angular.json",
               "RelativeToolTip": "client\\angular.json",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAGYAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-07-17T19:11:25.925Z",
               "EditorCaption": ""

@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\dtos\\activeusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\dtos\\activeusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,12 +86,11 @@
               "RelativeToolTip": "socialmedia\\DTOs\\loginDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T21:45:31.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-20T21:45:31.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "activeusersDto.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\DTOs\\activeusersDto.cs",
               "RelativeDocumentMoniker": "socialmedia\\DTOs\\activeusersDto.cs",
@@ -99,8 +98,7 @@
               "RelativeToolTip": "socialmedia\\DTOs\\activeusersDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T21:30:01.397Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-19T21:30:01.397Z"
             },
             {
               "$type": "Document",
@@ -122,7 +120,7 @@
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\UserController.cs",
               "RelativeToolTip": "socialmedia\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-18T02:49:26.819Z",
               "EditorCaption": ""
@@ -137,8 +135,7 @@
               "RelativeToolTip": "socialmedia\\DTOs\\UserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T02:33:03.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T02:33:03.97Z"
             },
             {
               "$type": "Document",
@@ -174,8 +171,7 @@
               "RelativeToolTip": "socialmedia\\Services\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T02:10:44.84Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T02:10:44.84Z"
             },
             {
               "$type": "Document",
@@ -187,8 +183,7 @@
               "RelativeToolTip": "socialmedia\\DTOs\\RegisterDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T00:40:17.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T00:40:17.886Z"
             },
             {
               "$type": "Document",
@@ -216,20 +211,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\AccountController.cs",
               "RelativeToolTip": "socialmedia\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowDgAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowDgAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T16:29:13.437Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T16:29:13.437Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Entities\\AppUser.cs",
               "RelativeDocumentMoniker": "socialmedia\\Entities\\AppUser.cs",
@@ -237,8 +231,7 @@
               "RelativeToolTip": "socialmedia\\Entities\\AppUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T16:20:41.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T16:20:41.402Z"
             }
           ]
         }

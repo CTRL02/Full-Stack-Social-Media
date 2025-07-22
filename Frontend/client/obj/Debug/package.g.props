@@ -32,6 +32,7 @@
     <PackageJsonDependenciesJquerySticky Condition="$(PackageJsonDependenciesJquerySticky) == ''">^1.0.4</PackageJsonDependenciesJquerySticky>
     <PackageJsonDependenciesJwtDecode Condition="$(PackageJsonDependenciesJwtDecode) == ''">^4.0.0</PackageJsonDependenciesJwtDecode>
     <PackageJsonDependenciesNgxBootstrap Condition="$(PackageJsonDependenciesNgxBootstrap) == ''">^20.0.0</PackageJsonDependenciesNgxBootstrap>
+    <PackageJsonDependenciesNgxToastr Condition="$(PackageJsonDependenciesNgxToastr) == ''">^19.0.0</PackageJsonDependenciesNgxToastr>
     <PackageJsonDependenciesPopperJs Condition="$(PackageJsonDependenciesPopperJs) == ''">^1.16.1</PackageJsonDependenciesPopperJs>
     <PackageJsonDependenciesRxjs Condition="$(PackageJsonDependenciesRxjs) == ''">~7.8.0</PackageJsonDependenciesRxjs>
     <PackageJsonDependenciesTslib Condition="$(PackageJsonDependenciesTslib) == ''">^2.3.0</PackageJsonDependenciesTslib>
