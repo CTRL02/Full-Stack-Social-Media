@@ -87,7 +87,7 @@
     left: -10%;
     width: 120%;
     height: 200px;
-    background: #f2f2f2;
+    background-color: var(--bs-body-bg);
     transform: rotate(-5deg);
     z-index: 2;
   }
@@ -109,19 +109,20 @@
   position: relative;
   max-width: 430px;
   width: 100%;
-  background: #fff;
+  background-color: var(--bs-body-bg);
   padding: 34px;
   border-radius: 6px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
+  color: var(--bs-body-color);
 }
 
   .register-wrapper h2 {
     position: relative;
     font-size: 22px;
     font-weight: 600;
-    color: #333;
+    color: var(--bs-body-color);
   }
 
     .register-wrapper h2::before {
@@ -132,7 +133,7 @@
       height: 3px;
       width: 28px;
       border-radius: 12px;
-      background: #4070f4;
+      background-color: var(--bs-body-bg);
     }
 
   .register-wrapper form {
@@ -151,7 +152,7 @@
       padding: 0 15px;
       font-size: 17px;
       font-weight: 400;
-      color: #333;
+      color: var(--bs-body-color);
       border: 1.5px solid #C7BEBE;
       border-bottom-width: 2.5px;
       border-radius: 6px;
@@ -169,7 +170,7 @@
 }
 
   .register-wrapper .policy h3 {
-    color: #707070;
+    color: var(--bs-body-color);
     font-size: 14px;
     font-weight: 500;
     margin-left: 10px;
@@ -179,20 +180,20 @@
   color: #fff;
   letter-spacing: 1px;
   border: none;
-  background: #4070f4;
+  background-color: var(--bs-body-bg);
   cursor: pointer;
   height: 52px;
 }
 
   .input-box.button input:hover {
-    background: #0e4bf1;
+    background-color: var(--bs-body-bg);
   }
 
 
 /* Content Section */
 .content-section {
   padding: 4rem 2rem;
-  background-color: #f4f4f4;
+  background-color: var(--bs-body-bg);
 }
 
 .content-container {
@@ -203,7 +204,7 @@
 }
 
 .content-box {
-  background-color: white;
+  background-color: var(--bs-body-bg);
   padding: 2rem;
   border-radius: 10px;
   opacity: 0;
@@ -252,7 +253,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
+  color: var(--bs-body-color);
   padding: 120px 20px;
   opacity: 0;
   transform: translateY(50px);
@@ -291,7 +292,7 @@
     position: relative;
     text-align: center;
     font-weight: bold;
-    color: #fff;
+    color: var(--bs-body-color);
     font-size: 1.2em;
   }
 

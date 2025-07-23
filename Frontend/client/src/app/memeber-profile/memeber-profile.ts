@@ -29,5 +29,10 @@ export class MemeberProfile {
     }
   }
 
-
+  userD = {
+    username: 'JaneDoe',
+    avatar: 'https://i.pravatar.cc/150?img=1',
+    title: 'Premium Member',
+    bio: 'Digital creator passionate about web development and UI/UX design.'
+  };
 }

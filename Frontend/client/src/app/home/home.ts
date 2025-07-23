@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
 import { registerUser } from '../models/registerUser';
 import { allUsersModel } from '../models/allusersModel';
 import { Observable } from 'rxjs';
@@ -11,7 +11,8 @@ import { Toast, ToastrService } from 'ngx-toastr';
   selector: 'app-home',
   standalone: false,
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class Home {
   model: registerUser = ({ username: '', avatar: '', password: '' });

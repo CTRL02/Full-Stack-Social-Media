@@ -1,12 +1,8 @@
+<div [attr.data-bs-theme]="currentTheme">
+  <app-nav></app-nav>
 
-
-<app-nav></app-nav>
-
-<div class="main-content">
-
-  <router-outlet></router-outlet>
-  <app-messages *ngIf="showMessages$ | async"></app-messages>
-
+  <div class="main-content">
+    <router-outlet></router-outlet>
+    <app-messages *ngIf="showMessages$ | async"></app-messages>
+  </div>
 </div>
-
-

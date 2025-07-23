@@ -1,7 +1,15 @@
 body.with-navbar .main-content {
-  padding-top: 70px; /* or match your navbar height */
+  padding-top: 70px;
+  background-color: var(--bs-body-bg);
 }
 
 body.home-no-navbar .main-content {
   padding-top: 0;
+  background-color: var(--bs-body-bg);
+}
+
+
+
+[data-bs-theme="light"]{
+  --bs-border-color: #339af0; /* Brighter blue for dark mode */
 }

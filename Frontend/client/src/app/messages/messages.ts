@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { UiFunctions } from '../services/ui-functions';
 
 @Component({
   selector: 'app-messages',
   standalone: false,
   templateUrl: './messages.html',
-  styleUrl: './messages.css'
+  styleUrl: './messages.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class Messages {
   isMinimized = false;

@@ -5,6 +5,8 @@
 
 .card {
   transition: transform 0.3s ease;
+  background-color: var(--bs-card-bg);
+  color: var(--bs-body-color);
   border: none;
 }
 
@@ -30,14 +32,21 @@ img.card-img-top {
   display: flex;
   justify-content: center;
   padding: 3rem 1rem;
-  background-color: #f5f5f5; /* light gray background for contrast */
+  background-color: var(--bs-body-bg);
+  /* light gray background for contrast */
 }
 
 .feed-container {
   width: 100%;
   max-width: 900px; /* typical feed width */
-  background-color: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background-color: var(--bs-body-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
+
+
+
+
+

@@ -9,6 +9,7 @@ import { filter } from 'rxjs/operators';
 import { UiFunctions } from '../services/ui-functions';
 import { allUsersModel } from '../models/allusersModel';
 import { ToastrService } from 'ngx-toastr';
+import { ThemeService } from '../services/darktoggle';
 
 @Component({
   selector: 'app-nav',
@@ -27,8 +28,9 @@ export class Nav {
   filteredUsers: allUsersModel[] = [];
   allUsers: allUsersModel[] = [];
   showSearchResults = false;
+  isDarkMode = false;
 
-  constructor(private authServ: Account, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
+  constructor(private themeService : ThemeService,private authServ: Account, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
     this.user$ = this.authServ.CurrentUser$;  
   }
 
@@ -38,8 +40,11 @@ export class Nav {
       this.isLoggedIn = !!user;
       this.handleScroll();
       this.updateBodyClass();
-    }));
 
+    }));
+    this.subscriptions.push(this.themeService.isDarkTheme.subscribe(dark => {
+      this.isDarkMode = dark;
+    }));
     this.subscriptions.push(this.userServ.getUsers().subscribe(users => {
       this.allUsers = users;
     }));
@@ -63,6 +68,15 @@ export class Nav {
 
 
   }
+
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkTheme(this.isDarkMode);
+  }
+
+
+
   onSearch(): void {
     const term = this.searchTerm.toLowerCase().trim();
     if (!term) {
@@ -154,6 +168,9 @@ export class Nav {
   }
 
 
+  get homeLink(): string {
+    return this.isLoggedIn ? '/feed' : '/';
+  }
 
  getProfileLink() {
   const raw = localStorage.getItem('user');

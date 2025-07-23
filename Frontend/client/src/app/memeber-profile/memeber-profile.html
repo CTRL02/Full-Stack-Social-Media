@@ -1,55 +1,41 @@
-<aside class="profile-card">
-  <header>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- here’s the avatar -->
-    <a target="_blank" href="#">
-      <img src="http://lorempixel.com/150/150/people/" class="hoverZoomLink">
-    </a>
-
-    <!-- the username -->
-    <h1>
-      John Doe
-    </h1>
-
-    <!-- and role or location -->
-    <h2>
-      Better Visuals
-    </h2>
-
-  </header>
-
-  <!-- bit of a bio; who are you? -->
-  <div class="profile-bio">
-
-    <p>
-      It takes monumental improvement for us to change how we live our lives. Design is the way we access that improvement.
-    </p>
-
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img [src]="userD.avatar || 'assets/default-avatar.jpg'" alt="Profile picture">
+    </div>
+    <h1>{{ userD.username || 'Username' }}</h1>
+    <h2>{{ userD.title || 'Member' }}</h2>
   </div>
 
-  <!-- some social links to show off -->
-  <ul class="profile-social-links">
-    <li>
-      <a target="_blank" href="https://www.facebook.com/creativedonut">
-        <i class="fa fa-facebook"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://twitter.com/dropyourbass">
-        <i class="fa fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://github.com/vipulsaxena">
-        <i class="fa fa-github"></i>
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://www.behance.net/vipulsaxena">
+  <div class="profile-content">
+    <div class="profile-section about-section">
+      <h3>About</h3>
+      <p>{{ userD.bio || 'No bio available' }}</p>
+    </div>
 
-        <i class="fa fa-behance"></i>
-      </a>
-    </li>
-  </ul>
-</aside>
+    <div class="profile-section stats-section">
+      <div class="stat-item">
+        <span class="stat-value">142</span>
+        <span class="stat-label">Posts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">1.2K</span>
+        <span class="stat-label">Followers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">87</span>
+        <span class="stat-label">Following</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-footer">
+    <div class="social-links">
+      <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <button class="btn btn-primary">Edit Profile</button>
+  </div>
+</div>

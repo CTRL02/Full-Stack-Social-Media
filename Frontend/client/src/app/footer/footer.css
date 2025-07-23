@@ -1,9 +1,15 @@
 /* footer.component.css */
+:host {
+  display: block;
+}
+
+
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #03396c;
 }
+
 
 .wave-footer {
   position: relative;
@@ -11,6 +17,14 @@ body {
   height: 60px;
   overflow: hidden;
 }
+
+.wave-footer {
+  background-color: var(--bs-body-bg);
+}
+
+  .wave-footer svg use {
+    fill: var(--bs-primary); /* or another Bootstrap variable */
+  }
 
 .editorial {
   display: block;

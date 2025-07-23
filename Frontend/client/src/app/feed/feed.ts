@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 interface Post {
   username: string;
@@ -12,7 +12,8 @@ interface Post {
   selector: 'app-feed',
   standalone: false,
   templateUrl: './feed.html',
-  styleUrl: './feed.css'
+  styleUrl: './feed.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class Feed {
   posts: Post[] = [];
