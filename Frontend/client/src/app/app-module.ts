@@ -1,6 +1,6 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Nav } from './nav/nav';
@@ -13,6 +13,7 @@ import { Messages } from './messages/messages';
 import { Feed } from './feed/feed';
 import { authGuard } from './guard/auth-guard';
 import { SharedModule } from './shared-module';
+import { ErrorInterceptor } from './interceptor/error-interceptor';
 
 
 @NgModule({
@@ -36,7 +37,12 @@ import { SharedModule } from './shared-module';
 
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [App]
 })

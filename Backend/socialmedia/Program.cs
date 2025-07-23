@@ -4,6 +4,7 @@ using socialmedia.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using socialmedia.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<globalExceptionHandler>();
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
