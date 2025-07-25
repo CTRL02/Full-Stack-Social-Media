@@ -14,6 +14,8 @@ import { Feed } from './feed/feed';
 import { authGuard } from './guard/auth-guard';
 import { SharedModule } from './shared-module';
 import { ErrorInterceptor } from './interceptor/error-interceptor';
+import { Notfound } from './notfound/notfound';
+import { ServerError } from './server-error/server-error';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { ErrorInterceptor } from './interceptor/error-interceptor';
     Footer,
     MemeberProfile,
     Messages,
-    Feed
+    Feed,
+    Notfound,
+    ServerError
     
   ],
   imports: [

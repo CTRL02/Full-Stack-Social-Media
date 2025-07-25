@@ -145,16 +145,7 @@ export class Nav {
           this.toastr.success('Login successful!', 'Welcome');
           this.router.navigate(['/feed']);
         }
-      },
-      error: err => {
-        if (err.status === 400) {
-          this.toastr.warning('Please enter valid data.', 'Validation Error');
-        } else if (err.status === 401) {
-          this.toastr.error('Invalid username or password.', 'Login Failed');
-        } else {
-          this.toastr.error('An unexpected error occurred.', 'Error');
-        }
-      }
+      }   
     });
   }
 

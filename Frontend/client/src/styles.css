@@ -13,3 +13,9 @@ body.home-no-navbar .main-content {
 [data-bs-theme="light"]{
   --bs-border-color: #339af0; /* Brighter blue for dark mode */
 }
+
+body, .app-wrapper {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  min-height: 100vh;
+}

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class User {
   baseUrl = 'http://localhost:5080/api/User/';
   constructor(private http: HttpClient) { }
-
+  //populate active users on homepage
   getUsers(){
     return this.http.get<allUsersModel[]>(this.baseUrl + 'getusers');
   }
@@ -32,6 +32,7 @@ export class User {
     return this.http.get<allUsersModel[]>(this.baseUrl + 'getuserswithterm/' + searchTerm);
   }
 
+  //populate profile page with this endpoint
   getUserByUsername(username: string): Observable<allUsersModel> {
     return this.http.get<allUsersModel>(this.baseUrl + 'name/' + username);
   }

@@ -30,10 +30,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.toastr.error('Access denied', 'Forbidden');
             break;
           case 404:
-            this.toastr.info('Resource not found', 'Not Found');
+            this.router.navigate(['/not-found']);
             break;
           case 500:
-            this.toastr.error('Something went wrong on the server', 'Server Error');
+            this.router.navigate(['/server-error']);
             break;
           default:
             this.toastr.error('An unexpected error occurred', 'Error');

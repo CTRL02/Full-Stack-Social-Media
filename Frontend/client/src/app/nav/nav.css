@@ -25,45 +25,42 @@ nav.navbar {
   background-color: var(--bs-body-bg);
 }
 
-
-
-  /* Navbar text - default (when transparent) */
-  nav.navbar a,
-  nav.navbar .navbar-brand,
-  nav.navbar .nav-link,
-  nav.navbar small,
-  nav.navbar .dropdown-toggle {
-    color: white !important;
-    transition: color 0.3s ease;
-  }
-
-  /* When scrolled: white background and deeper shadow */
-nav.navbar.scrolled {
-  background: var(--bs-body-bg); /* fallback */
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1); /* richer multi-layered shadow */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* subtle bottom edge line */
+/* Navbar text - default */
+nav.navbar a,
+nav.navbar .navbar-brand,
+nav.navbar .nav-link,
+nav.navbar small,
+nav.navbar .dropdown-toggle {
+  color: var(--bs-emphasis-color) !important;
+  transition: color 0.3s ease;
 }
 
-    /* Navbar text turns dark when scrolled */
-    nav.navbar.scrolled a,
-    nav.navbar.scrolled .navbar-brand,
-    nav.navbar.scrolled .nav-link,
-    nav.navbar.scrolled small,
-    nav.navbar.scrolled .dropdown-toggle {
-      color: #0d3b66 !important;
-    }
+/* When scrolled: set background and shadows */
+nav.navbar.scrolled {
+  background: var(--bs-body-bg); /* dynamic based on theme */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1); /* deeper shadow */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+  /* When scrolled: dynamic contrast text */
+  nav.navbar.scrolled a,
+  nav.navbar.scrolled .navbar-brand,
+  nav.navbar.scrolled .nav-link,
+  nav.navbar.scrolled small,
+  nav.navbar.scrolled .dropdown-toggle {
+    color: var(--bs-body-color) !important;
+  }
 
 /* Navbar toggler icon styling */
 .navbar-toggler .fas {
   border: none;
-  color: white;
+  color: var(--bs-emphasis-color); /* adjusts in light/dark */
   transition: color 0.3s ease;
 }
 
 nav.navbar.scrolled .navbar-toggler .fas {
-  color: #0d3b66;
+  color: var(--bs-body-color); /* safe for both themes */
 }
-
 
 
 /*dark mode toggler*/
