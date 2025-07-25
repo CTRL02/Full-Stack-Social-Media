@@ -14,6 +14,8 @@ public class UserService : IUserService
         _context = context;
     }
 
+    
+
     public async Task<AppUser> GetUser(int id)
     {
         return await _context.Users.FindAsync(id);
@@ -71,7 +73,12 @@ public class UserService : IUserService
                     username = f.Followee.UserName,
                     avatar = f.Followee.avatar
                 }).ToList(),
-                socialLinks = u.SocialLinks.Select(link => link.Url).ToList()
+                socialLinks = u.SocialLinks.Select(link => link.Url).ToList(),
+                posts = u.Posts.Select(p => new postDto
+                {
+                    Content = p.Content,
+                    CreatedAt = p.CreatedAt,
+                }).ToList()
             })
             .FirstOrDefaultAsync();
     }

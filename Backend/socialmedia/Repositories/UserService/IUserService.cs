@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.AspNetCore.Mvc;
 using socialmedia.DTOs;
 using socialmedia.Entities;
 
@@ -9,5 +10,4 @@ public interface IUserService
     Task<userProfileDto?> GetUserByUsername(string username);
     Task<IEnumerable<activeusersDto>> GetUsers();
     Task<IEnumerable<activeusersDto>> GetUsersBySearch(string searchTerm);
-
 }

@@ -12,5 +12,7 @@
         public List<string> socialLinks { get; set; }
         public List<activeusersDto> followers { get; set; }
         public List<activeusersDto> following { get; set; }
+        public List<postDto> posts { get; set; }  
+
     }
 }

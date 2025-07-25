@@ -14,17 +14,34 @@
     </div>
 
     <div class="profile-section stats-section">
+
       <div class="stat-item">
-        <span class="stat-value">{{user?.noOfPosts}}</span>
+        <span class="stat-value">{{ user?.noOfPosts || 'no posts' }}</span>
         <span class="stat-label">Posts</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-value">{{user?.noOfFollowers}}</span>
+
+      <!-- Followers dropdown -->
+      <div class="stat-item dropdown">
+        <span class="stat-value">{{ user?.noOfFollowers || 0 }}</span>
         <span class="stat-label">Followers</span>
+        <ul class="dropdown-menu">
+          <li *ngFor="let follower of user?.followers">
+            <img [src]="follower.avatar" alt="avatar" class="dropdown-avatar">
+            <span>{{ follower.username }}</span>
+          </li>
+        </ul>
       </div>
-      <div class="stat-item">
-        <span class="stat-value">{{user?.noOfFollowing}}</span>
+
+      <!-- Following dropdown -->
+      <div class="stat-item dropdown">
+        <span class="stat-value">{{ user?.noOfFollowing || 0 }}</span>
         <span class="stat-label">Following</span>
+        <ul class="dropdown-menu">
+          <li *ngFor="let followee of user?.following">
+            <img [src]="followee.avatar" alt="avatar" class="dropdown-avatar">
+            <span>{{ followee.username }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -36,6 +53,25 @@
       </a>
     </div>
   </div>
+  <!--will do later-->
+  <!--<button class="btn btn-primary">Edit Profile</button>-->
 
-  <button class="btn btn-primary">Edit Profile</button>
+  <!-- User Posts Section -->
+  <div class="profile-section posts-section" *ngIf="user?.posts?.length">
+    <h3>{{ user?.username }}'s Posts</h3>
+
+    <div class="post" *ngFor="let post of user?.posts">
+      <div class="post-header">
+        <img [src]="user?.avatar" class="post-avatar" alt="avatar">
+        <div>
+          <div class="post-username">{{ user?.username }}</div>
+          <div class="post-date">{{ post?.createdAt | date:'medium' }}</div>
+        </div>
+      </div>
+      <div class="post-content">
+        <p>{{ post?.content }}</p>
+      </div>
+    </div>
+  </div>
+
 </div>

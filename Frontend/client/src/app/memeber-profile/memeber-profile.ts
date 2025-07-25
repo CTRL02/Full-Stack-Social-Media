@@ -20,13 +20,13 @@ export class MemeberProfile {
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const username = params.get('id');
-      console.log('Fetching user by username:', username);
+      //console.log('Fetching user by username:', username);
 
       if (username) {
         this.userService.getUserByUsername(username).subscribe({
           next: user => {
             this.user = user;
-            console.log('Fetched user from API:', user);
+          //  console.log('Fetched user from API:', user);
           },
           error: err => console.error('Error fetching user', err)
         });
