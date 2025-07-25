@@ -43,4 +43,6 @@ public class UserController : ControllerBase
         var users = await _userService.GetUsersBySearch(searchTerm);
         return Ok(users);
     }
+
+   
 }

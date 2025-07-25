@@ -3,6 +3,7 @@ import { allUsersModel } from '../models/allusersModel';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { userProfile } from '../models/userProfile';
  
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class User {
   }
 
   //populate profile page with this endpoint
-  getUserByUsername(username: string): Observable<allUsersModel> {
-    return this.http.get<allUsersModel>(this.baseUrl + 'name/' + username);
+  getUserByUsername(username: string): Observable<userProfile> {
+    return this.http.get<userProfile>(this.baseUrl + 'name/' + username);
   }
 
 }

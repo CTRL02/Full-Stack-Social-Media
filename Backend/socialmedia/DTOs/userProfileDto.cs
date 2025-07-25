@@ -10,5 +10,7 @@
         public int noOfFollowers { get; set; }
         public int noOfFollowing { get; set; }
         public List<string> socialLinks { get; set; }
+        public List<activeusersDto> followers { get; set; }
+        public List<activeusersDto> following { get; set; }
     }
 }

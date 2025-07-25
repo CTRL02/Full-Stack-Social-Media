@@ -9,4 +9,5 @@ public interface IUserService
     Task<userProfileDto?> GetUserByUsername(string username);
     Task<IEnumerable<activeusersDto>> GetUsers();
     Task<IEnumerable<activeusersDto>> GetUsersBySearch(string searchTerm);
+
 }

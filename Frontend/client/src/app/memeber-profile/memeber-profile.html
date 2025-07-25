@@ -1,29 +1,29 @@
 <div class="profile-container">
   <div class="profile-header">
     <div class="profile-avatar">
-      <img [src]="userD.avatar || 'assets/default-avatar.jpg'" alt="Profile picture">
+      <img [src]="user?.avatar || 'assets/default-avatar.jpg'" alt="Profile picture">
     </div>
-    <h1>{{ userD.username || 'Username' }}</h1>
-    <h2>{{ userD.title || 'Member' }}</h2>
+    <h1>{{ user?.username || 'Username' }}</h1>
+    <h2>{{ user?.title || 'Member' }}</h2>
   </div>
 
   <div class="profile-content">
     <div class="profile-section about-section">
       <h3>About</h3>
-      <p>{{ userD.bio || 'No bio available' }}</p>
+      <p>{{ user?.bio || 'No bio available' }}</p>
     </div>
 
     <div class="profile-section stats-section">
       <div class="stat-item">
-        <span class="stat-value">142</span>
+        <span class="stat-value">{{user?.noOfPosts}}</span>
         <span class="stat-label">Posts</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value">1.2K</span>
+        <span class="stat-value">{{user?.noOfFollowers}}</span>
         <span class="stat-label">Followers</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value">87</span>
+        <span class="stat-value">{{user?.noOfFollowing}}</span>
         <span class="stat-label">Following</span>
       </div>
     </div>
@@ -31,11 +31,11 @@
 
   <div class="profile-footer">
     <div class="social-links">
-      <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-      <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <a *ngFor="let link of user?.socialLinks" [href]="link" target="_blank" class="social-link">
+        <i [ngClass]="getSocialIcon(link)"></i>
+      </a>
     </div>
-    <button class="btn btn-primary">Edit Profile</button>
   </div>
+
+  <button class="btn btn-primary">Edit Profile</button>
 </div>

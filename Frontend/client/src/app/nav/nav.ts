@@ -90,7 +90,7 @@ export class Nav {
     this.searchTerm = '';
     this.filteredUsers = [];
     this.showSearchResults = false;
-    this.router.navigate(['/members', user.username], { state: { user } });
+    this.router.navigate(['/members', user.username]);
   }
 
   hideResultsWithDelay(): void {

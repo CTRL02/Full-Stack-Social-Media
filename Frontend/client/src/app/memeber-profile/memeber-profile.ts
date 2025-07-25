@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { allUsersModel } from '../models/allusersModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../services/user';
+import { userProfile } from '../models/userProfile';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-memeber-profile',
@@ -10,29 +12,41 @@ import { User } from '../services/user';
   styleUrl: './memeber-profile.css'
 })
 export class MemeberProfile {
-  user: allUsersModel = { username: '', avatar: '' };
+  user: userProfile | null = null;
+  private destroy$ = new Subject<void>();
 
   constructor(private router: Router, private userService: User, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const passedUser = history.state?.user;
-    console.log(passedUser);
-    if (passedUser && typeof passedUser === 'object') {
-      this.user = passedUser;
-    } else {
-      const username = this.route.snapshot.paramMap.get('username');
+    this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
+      const username = params.get('id');
+      console.log('Fetching user by username:', username);
+
       if (username) {
-        this.userService.getUserByUsername(username).subscribe(user => {
-          this.user = user;
+        this.userService.getUserByUsername(username).subscribe({
+          next: user => {
+            this.user = user;
+            console.log('Fetched user from API:', user);
+          },
+          error: err => console.error('Error fetching user', err)
         });
       }
-    }
+    });
   }
 
-  userD = {
-    username: 'JaneDoe',
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    title: 'Premium Member',
-    bio: 'Digital creator passionate about web development and UI/UX design.'
-  };
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  getSocialIcon(link: string): string {
+    if (link.includes('linkedin.com')) return 'fab fa-linkedin';
+    if (link.includes('github.com')) return 'fab fa-github';
+    if (link.includes('twitter.com')) return 'fab fa-twitter';
+    if (link.includes('facebook.com')) return 'fab fa-facebook';
+    return 'fas fa-globe'; 
+  }
+
+  
 }
