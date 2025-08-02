@@ -7,6 +7,10 @@ using System.Text;
 using socialmedia.Middleware;
 using socialmedia.Repositories.AccountService;
 using socialmedia.Repositories.PostService;
+using socialmedia.Repositories.UserFollowService;
+using socialmedia.Entities;
+using socialmedia.Repositories.ImpressionService;
+using socialmedia.Repositories.CommentService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +19,38 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Social Media API",
+        Version = "v1"
+    });
+
+    var jwtSecurityScheme = new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Name = "Authorization",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Description = "Enter your JWT token below.",
+
+        Reference = new Microsoft.OpenApi.Models.OpenApiReference
+        {
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme
+        }
+    };
+
+    options.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        { jwtSecurityScheme, Array.Empty<string>() }
+    });
+});
 builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", builder =>
         builder.WithOrigins("http://localhost:4200")
@@ -39,6 +74,12 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<IUserFollowService, UserFollowService>();
+builder.Services.AddScoped<ImpressionService>();
+builder.Services.AddScoped<CommentService>();
+
+
+
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -58,11 +99,10 @@ builder.Services.AddAuthentication("Bearer")
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//add if development here but removed to host on monster asp net
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 app.UseMiddleware<globalExceptionHandler>();
 app.UseHttpsRedirection();
 

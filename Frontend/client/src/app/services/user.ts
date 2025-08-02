@@ -34,8 +34,10 @@ export class User {
   }
 
   //populate profile page with this endpoint
+  //making this endpoint return id would scale the app as it will remove the need to call other apis that gets the user id ..will be added later...
   getUserByUsername(username: string): Observable<userProfile> {
     return this.http.get<userProfile>(this.baseUrl + 'name/' + username);
   }
+
 
 }

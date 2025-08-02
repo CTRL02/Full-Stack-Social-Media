@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAHirtF5oUyEqeYri+eZ4DfAAAAAACAAAAAAAQZgAAAAEAACAAAADP5WqOC6zK4FwYqiSB1ldYywNBPLR0ZI66u/QPSVnRQAAAAAAOgAAAAAIAACAAAAASQZiOFYAvxTbRfCRQmLUb+twsr+Dsb0xaQF5QFoO7wCAAAACuiTjj3UVX8aWAXC6g+YiRsorb+6iNiJyKCMZLGiMcREAAAACXp6qTvatgr4LQP6I0+RD22LSx3H5rfKg3UZncpTJy23rm/rdFRupYODPuH1a9JeGe7FwUEc7c6WISl/7hgqtC</EncryptedPassword>
+    <History>True|2025-07-27T10:41:42.3198400Z||;True|2025-07-27T13:35:16.6679345+03:00||;False|2025-07-27T13:32:41.1449187+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=db24248.databaseasp.net%3b Database=db24248%3b User Id=db24248%3b Password=2f=J-Dy3m%3f8H%3b Encrypt=False%3b MultipleActiveResultSets=True%3b </Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="socialmedia.Data.DBContext">
+      <Value>Server=db24248.databaseasp.net%3b Database=db24248%3b User Id=db24248%3b Password=2f=J-Dy3m%3f8H%3b Encrypt=False%3b MultipleActiveResultSets=True%3b </Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

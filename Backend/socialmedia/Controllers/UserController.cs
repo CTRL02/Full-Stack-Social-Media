@@ -1,4 +1,5 @@
 ﻿// Controllers/UserController.cs
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using socialmedia.DTOs;
 using socialmedia.Entities;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using socialmedia.DTOs;
 using socialmedia.Repositories.PostService;
 
@@ -14,14 +15,14 @@ namespace socialmedia.Controllers
         {
             _postService = postService;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> CreatePost([FromBody] createPostDto postDto)
         {
             var post = await _postService.CreatePostAsync(postDto);
             return Ok(post);
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeletePost(int id)
         {

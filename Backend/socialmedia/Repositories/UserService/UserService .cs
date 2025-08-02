@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using socialmedia.Data;
 using socialmedia.DTOs;
+using socialmedia.DTOs.userProfileDtos;
 using socialmedia.Entities;
 
 public class UserService : IUserService
@@ -23,64 +24,109 @@ public class UserService : IUserService
 
     public async Task<userProfileDto?> GetUserByUsername(string username)
     {
-            var query = _context.Users
-        .Where(u => u.UserName.ToLower() == username.ToLower())
-        .Select(u => new userProfileDto
-        {
-            username = u.UserName,
-            avatar = u.avatar,
-            bio = u.Bio,
-            title = u.Title,
-            noOfPosts = u.Posts.Count,
-            noOfFollowers = u.Followers.Count,
-            noOfFollowing = u.Following.Count,
-            followers = u.Followers.Select(f => new activeusersDto
-            {
-                username = f.Follower.UserName,
-                avatar = f.Follower.avatar
-            }).ToList(),
+        //    var query = _context.Users
+        //.Where(u => u.UserName.ToLower() == username.ToLower())
+        //.Select(u => new userProfileDto
+        //{
+        //    username = u.UserName,
+        //    avatar = u.avatar,
+        //    bio = u.Bio,
+        //    title = u.Title,
+        //    noOfPosts = u.Posts.Count,
+        //    noOfFollowers = u.Followers.Count,
+        //    noOfFollowing = u.Following.Count,
+        //    followers = u.Followers.Select(f => new activeusersDto
+        //    {
+        //        username = f.Follower.UserName,
+        //        avatar = f.Follower.avatar
+        //    }).ToList(),
 
-            following = u.Following.Select(f => new activeusersDto
-            {
-                username = f.Followee.UserName,
-                avatar = f.Followee.avatar
-            }).ToList(),
-            socialLinks = u.SocialLinks.Select(link => link.Url).ToList()
-        });
+        //    following = u.Following.Select(f => new activeusersDto
+        //    {
+        //        username = f.Followee.UserName,
+        //        avatar = f.Followee.avatar
+        //    }).ToList(),
+        //    socialLinks = u.SocialLinks.Select(link => link.Url).ToList()
+        //});
 
-            var sql = query.ToQueryString();
-            Console.WriteLine(sql);
+        //    var sql = query.ToQueryString();
+        //    Console.WriteLine(sql);
 
         return await _context.Users
-            .Where(u => u.UserName.ToLower() == username.ToLower())
-            .Select(u => new userProfileDto
-            {
-                username = u.UserName,
-                avatar = u.avatar,
-                bio = u.Bio,
-                title = u.Title,
-                noOfPosts = u.Posts.Count,
-                noOfFollowers = u.Followers.Count,
-                noOfFollowing = u.Following.Count,
-                followers = u.Followers.Select(f => new activeusersDto
-                {
-                    username = f.Follower.UserName,
-                    avatar = f.Follower.avatar
-                }).ToList(),
+    .Where(u => u.UserName.ToLower() == username.ToLower())
+    .Select(u => new userProfileDto
+    {
+        username = u.UserName,
+        avatar = u.avatar,
+        bio = u.Bio,
+        title = u.Title,
+        noOfPosts = u.Posts.Count,
+        noOfFollowers = u.Followers.Count,
+        noOfFollowing = u.Following.Count,
+        followers = u.Followers.Select(f => new activeusersDto
+        {
+            username = f.Follower.UserName,
+            avatar = f.Follower.avatar
+        }).ToList(),
 
-                following = u.Following.Select(f => new activeusersDto
+        following = u.Following.Select(f => new activeusersDto
+        {
+            username = f.Followee.UserName,
+            avatar = f.Followee.avatar
+        }).ToList(),
+
+        socialLinks = u.SocialLinks.Select(link => link.Url).ToList(),
+
+        posts = u.Posts.Select(p => new profilepostDto
+        {
+            Content = p.Content,
+            CreatedAt = p.CreatedAt,
+
+            Impressions = p.Impressions.Select(i => new profileimpressionDto
+            {
+                Type = i.Type.ToString(),
+                CreatedAt = i.CreatedAt,
+                username = i.AppUser.UserName,
+                avatar = i.AppUser.avatar
+            }).ToList(),
+
+            Comments = p.Comments
+                .Where(c => c.ParentCommentId == null)
+                .Select(c => new profilecommentDto
                 {
-                    username = f.Followee.UserName,
-                    avatar = f.Followee.avatar
-                }).ToList(),
-                socialLinks = u.SocialLinks.Select(link => link.Url).ToList(),
-                posts = u.Posts.Select(p => new postDto
-                {
-                    Content = p.Content,
-                    CreatedAt = p.CreatedAt,
+                    Content = c.Content,
+                    CreatedAt = c.CreatedAt,
+                    username = c.AppUser.UserName,
+                    avatar = c.AppUser.avatar,
+
+                    Impressions = c.Impressions.Select(i => new profileimpressionDto
+                    {
+                        Type = i.Type.ToString(),
+                        CreatedAt = i.CreatedAt,
+                        username = i.AppUser.UserName,
+                        avatar = i.AppUser.avatar
+                    }).ToList(),
+
+                    Replies = c.Replies.Select(r => new profilecommentDto
+                    {
+                        Content = r.Content,
+                        CreatedAt = r.CreatedAt,
+                        username = r.AppUser.UserName,
+                        avatar = r.AppUser.avatar,
+
+                        Impressions = r.Impressions.Select(i => new profileimpressionDto
+                        {
+                            Type = i.Type.ToString(),
+                            CreatedAt = i.CreatedAt,
+                            username = i.AppUser.UserName,
+                            avatar = i.AppUser.avatar
+                        }).ToList()
+                    }).ToList()
                 }).ToList()
-            })
-            .FirstOrDefaultAsync();
+        }).ToList()
+    })
+    .FirstOrDefaultAsync();
+
     }
 
     public async Task<IEnumerable<activeusersDto>> GetUsers()

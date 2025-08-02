@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\memeber-profile\\memeber-profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\nav\\nav.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|solutionrelative:client\\src\\app\\services\\user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9A3C2CB-FC88-455D-806C-0AE4B85BB4B1}|client\\client.esproj|c:\\users\\10\\source\\repos\\socialmedia\\frontend\\client\\src\\app\\models\\authmodel.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -194,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "postModel.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\postModel.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\models\\postModel.ts",
@@ -202,12 +202,11 @@
               "RelativeToolTip": "client\\src\\app\\models\\postModel.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-25T20:11:15.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-25T20:11:15.623Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "userProfile.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\models\\userProfile.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\models\\userProfile.ts",
@@ -215,8 +214,7 @@
               "RelativeToolTip": "client\\src\\app\\models\\userProfile.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-25T09:40:54.246Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-25T09:40:54.246Z"
             },
             {
               "$type": "Document",
@@ -328,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "memeber-profile.css",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\memeber-profile\\memeber-profile.css",
               "RelativeDocumentMoniker": "client\\src\\app\\memeber-profile\\memeber-profile.css",
@@ -336,12 +334,11 @@
               "RelativeToolTip": "client\\src\\app\\memeber-profile\\memeber-profile.css",
               "ViewState": "AgIAAJkAAAAAAAAAAAAuwNEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-07-22T10:53:46.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T10:53:46.041Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "memeber-profile.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\memeber-profile\\memeber-profile.html",
               "RelativeDocumentMoniker": "client\\src\\app\\memeber-profile\\memeber-profile.html",
@@ -349,8 +346,7 @@
               "RelativeToolTip": "client\\src\\app\\memeber-profile\\memeber-profile.html",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-07-22T10:53:42.951Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T10:53:42.951Z"
             },
             {
               "$type": "Document",
@@ -463,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "app-routing-module.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app-routing-module.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\app-routing-module.ts",
@@ -475,13 +471,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "user.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\user.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\services\\user.ts",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\user.ts",
               "RelativeToolTip": "client\\src\\app\\services\\user.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAACTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-07-19T21:48:04.997Z"
             },
@@ -571,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "account.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\services\\account.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\services\\account.ts",
@@ -579,8 +575,7 @@
               "RelativeToolTip": "client\\src\\app\\services\\account.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-07-18T16:35:01.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-18T16:35:01.541Z"
             },
             {
               "$type": "Document",
@@ -608,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "nav.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\nav\\nav.ts",
@@ -632,7 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "nav.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\nav\\nav.html",
               "RelativeDocumentMoniker": "client\\src\\app\\nav\\nav.html",
@@ -680,7 +675,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "app.html",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app.html",
               "RelativeDocumentMoniker": "client\\src\\app\\app.html",
@@ -692,7 +687,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "app.ts",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Frontend\\client\\src\\app\\app.ts",
               "RelativeDocumentMoniker": "client\\src\\app\\app.ts",

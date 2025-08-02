@@ -1,4 +1,6 @@
-﻿namespace socialmedia.DTOs
+﻿using socialmedia.DTOs.userProfileDtos;
+
+namespace socialmedia.DTOs
 {
     public class userProfileDto
     {
@@ -12,7 +14,7 @@
         public List<string> socialLinks { get; set; }
         public List<activeusersDto> followers { get; set; }
         public List<activeusersDto> following { get; set; }
-        public List<postDto> posts { get; set; }  
+        public List<profilepostDto> posts { get; set; }  
 
     }
 }

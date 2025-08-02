@@ -12,8 +12,8 @@ using socialmedia.Data;
 namespace socialmedia.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20250725054838_removedplatform")]
-    partial class removedplatform
+    [Migration("20250727124857_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,14 +65,87 @@ namespace socialmedia.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserName")
+                        .IsUnique()
+                        .HasFilter("[UserName] IS NOT NULL");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ParentCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ParentCommentId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Impression", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Impressions");
                 });
 
             modelBuilder.Entity("socialmedia.Entities.Post", b =>
@@ -134,7 +207,60 @@ namespace socialmedia.Migrations
 
                     b.HasIndex("FolloweeId");
 
+                    b.HasIndex("FollowerId");
+
                     b.ToTable("UserFollows");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Comment", b =>
+                {
+                    b.HasOne("socialmedia.Entities.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("socialmedia.Entities.Comment", "ParentComment")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentCommentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("socialmedia.Entities.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("ParentComment");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Impression", b =>
+                {
+                    b.HasOne("socialmedia.Entities.AppUser", "AppUser")
+                        .WithMany("Impressions")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("socialmedia.Entities.Comment", "Comment")
+                        .WithMany("Impressions")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("socialmedia.Entities.Post", "Post")
+                        .WithMany("Impressions")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("socialmedia.Entities.Post", b =>
@@ -180,13 +306,31 @@ namespace socialmedia.Migrations
 
             modelBuilder.Entity("socialmedia.Entities.AppUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Followers");
 
                     b.Navigation("Following");
 
+                    b.Navigation("Impressions");
+
                     b.Navigation("Posts");
 
                     b.Navigation("SocialLinks");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Comment", b =>
+                {
+                    b.Navigation("Impressions");
+
+                    b.Navigation("Replies");
+                });
+
+            modelBuilder.Entity("socialmedia.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Impressions");
                 });
 #pragma warning restore 612, 618
         }
