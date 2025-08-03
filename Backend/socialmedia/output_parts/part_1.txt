@@ -1,0 +1,961 @@
+
+--- AddLanguageHeaderParameter.cs ---
+﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
+namespace socialmedia.Services
+{
+    public class AddLanguageHeaderParameter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            if (operation.Parameters == null)
+                operation.Parameters = new List<OpenApiParameter>();
+
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = "Accept-Language",
+                In = ParameterLocation.Header,
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "string",
+                    Default = new Microsoft.OpenApi.Any.OpenApiString("en")
+                },
+                Description = "Set language to 'en' or 'ar'"
+            });
+        }
+    }
+}
+
+--- ITokenService.cs ---
+﻿using socialmedia.Entities;
+
+namespace socialmedia.Services
+{
+    public interface ITokenService
+    {
+        string CreateToken(AppUser user);
+    }
+}
+
+--- TokenService.cs ---
+﻿using Microsoft.IdentityModel.Tokens;
+using socialmedia.Entities;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+namespace socialmedia.Services
+{
+    public class TokenService : ITokenService
+    {
+        private readonly IConfiguration _config;
+
+        public TokenService(IConfiguration config)
+        {
+            _config = config;
+        }
+
+        public string CreateToken(AppUser user)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.UserName)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_config["JwtSettings:ExpiresInMinutes"])),
+                Issuer = _config["JwtSettings:Issuer"],
+                Audience = _config["JwtSettings:Audience"],
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
+        }
+    }
+}
+
+--- Resources.ar.resx ---
+<?xml version='1.0' encoding='utf-8'?>
+<root><data xml:space="preserve" name="PostNotFound"><value>لم يتم العثور على المنشور</value></data><data xml:space="preserve" name="UserFollowedSuccess"><value>تم متابعة المستخدم بنجاح</value></data><data xml:space="preserve" name="UserFollowFailed"><value>فشل في متابعة المستخدم</value></data><data xml:space="preserve" name="UserUnfollowedSuccess"><value>تم إلغاء متابعة المستخدم بنجاح</value></data><data xml:space="preserve" name="UserUnfollowFailed"><value>فشل في إلغاء متابعة المستخدم</value></data><data xml:space="preserve" name="UsernameRequired"><value>اسم المستخدم مطلوب</value></data><data xml:space="preserve" name="UsernameMinLength"><value>يجب أن يكون اسم المستخدم 5 أحرف على الأقل</value></data><data xml:space="preserve" name="PasswordRequired"><value>كلمة المرور مطلوبة</value></data><data xml:space="preserve" name="PasswordMinLength"><value>يجب أن تكون كلمة المرور 6 أحرف على الأقل</value></data><data xml:space="preserve" name="UsernameExists"><value>اسم المستخدم موجود مسبقًا</value></data><data xml:space="preserve" name="InvalidCredentials"><value>اسم المستخدم أو كلمة المرور غير صحيحة</value></data><data xml:space="preserve" name="InvalidImpressionType"><value>نوع الانطباع غير صالح</value></data><data xml:space="preserve" name="ProvideOneId"><value>يرجى تقديم إما معرف المنشور أو التعليق فقط</value></data><data xml:space="preserve" name="MissingTargetId"><value>يجب تقديم معرف المنشور أو التعليق</value></data><data xml:space="preserve" name="TargetNotFound"><value>المنشور أو التعليق الهدف غير موجود</value></data><data xml:space="preserve" name="ImpressionRemoved"><value>تم إزالة الانطباع.</value></data><data xml:space="preserve" name="ImpressionAdded"><value>تم إضافة الانطباع.</value></data><data xml:space="preserve" name="CommentEmpty"><value>لا يمكن أن يكون محتوى التعليق فارغًا</value></data><data xml:space="preserve" name="TargetPostNotFound"><value>لم يتم العثور على المنشور الهدف</value></data><data xml:space="preserve" name="ParentCommentNotFound"><value>لم يتم العثور على التعليق الأصل</value></data><data xml:space="preserve" name="CommentMismatch"><value>التعليق الأصل لا ينتمي إلى نفس المنشور</value></data><data xml:space="preserve" name="CommentPosted"><value>تم نشر التعليق بنجاح</value></data></root>
+
+--- Resources.resx ---
+<?xml version='1.0' encoding='utf-8'?>
+<root><data xml:space="preserve" name="PostNotFound"><value>Post not found</value></data><data xml:space="preserve" name="UserFollowedSuccess"><value>User followed successfully</value></data><data xml:space="preserve" name="UserFollowFailed"><value>Failed to follow user</value></data><data xml:space="preserve" name="UserUnfollowedSuccess"><value>User unfollowed successfully</value></data><data xml:space="preserve" name="UserUnfollowFailed"><value>Failed to unfollow user</value></data><data xml:space="preserve" name="UsernameRequired"><value>Username is required</value></data><data xml:space="preserve" name="UsernameMinLength"><value>Username must be at least 5 characters</value></data><data xml:space="preserve" name="PasswordRequired"><value>Password is required</value></data><data xml:space="preserve" name="PasswordMinLength"><value>Password must be at least 6 characters</value></data><data xml:space="preserve" name="UsernameExists"><value>Username already exists</value></data><data xml:space="preserve" name="InvalidCredentials"><value>Invalid username or password</value></data><data xml:space="preserve" name="InvalidImpressionType"><value>Invalid impression type</value></data><data xml:space="preserve" name="ProvideOneId"><value>Provide only one of PostId or CommentId</value></data><data xml:space="preserve" name="MissingTargetId"><value>Either PostId or CommentId must be provided</value></data><data xml:space="preserve" name="TargetNotFound"><value>Target post or comment does not exist</value></data><data xml:space="preserve" name="ImpressionRemoved"><value>Impression removed.</value></data><data xml:space="preserve" name="ImpressionAdded"><value>Impression added.</value></data><data xml:space="preserve" name="CommentEmpty"><value>Comment content cannot be empty</value></data><data xml:space="preserve" name="TargetPostNotFound"><value>Target post not found</value></data><data xml:space="preserve" name="ParentCommentNotFound"><value>Parent comment not found</value></data><data xml:space="preserve" name="CommentMismatch"><value>Parent comment does not belong to the same post</value></data><data xml:space="preserve" name="CommentPosted"><value>Comment posted successfully.</value></data></root>
+
+--- SharedResource.cs ---
+﻿namespace socialmedia.Resources
+{
+    public class SharedResource
+    {
+    }
+}
+
+--- AccountService\AccountService.cs ---
+﻿// Services/AccountService.cs
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+using socialmedia.Repositories.AccountService;
+using socialmedia.Services;
+using System.Security.Cryptography;
+using System.Text;
+
+public class AccountService : IAccountService
+{
+    private readonly DBContext _context;
+    private readonly ITokenService _tokenService;
+
+    public AccountService(DBContext context, ITokenService tokenService)
+    {
+        _context = context;
+        _tokenService = tokenService;
+    }
+
+    public async Task<ActionResult<UserDto>> Register(RegisterDto dto)
+    {
+        if (await _context.Users.AnyAsync(u => u.UserName.ToLower() == dto.Username.ToLower()))
+            return new BadRequestObjectResult("Username already exists");
+
+        using var hmac = new HMACSHA512();
+
+        var user = new AppUser
+        {
+            UserName = dto.Username.ToLower(),
+            avatar = dto.avatar,
+            PasswordSalt = hmac.Key,
+            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password))
+        };
+
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+
+        var token = _tokenService.CreateToken(user);
+
+        return new OkObjectResult(new UserDto { Username = user.UserName, Token = token });
+    }
+
+    public async Task<ActionResult<UserDto>> Login(loginDto dto)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == dto.Username.ToLower());
+        if (user == null)
+            return new UnauthorizedObjectResult("Invalid username or password");
+
+        using var hmac = new HMACSHA512(user.PasswordSalt);
+        var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password));
+
+        if (!computedHash.SequenceEqual(user.PasswordHash))
+            return new UnauthorizedObjectResult("Invalid username or password");
+
+        var token = _tokenService.CreateToken(user);
+
+        return new OkObjectResult(new UserDto { Username = user.UserName, Token = token });
+    }
+}
+
+--- AccountService\IAccountService.cs ---
+﻿using Microsoft.AspNetCore.Mvc;
+using socialmedia.DTOs;
+
+namespace socialmedia.Repositories.AccountService
+{
+    public interface IAccountService
+    {
+        Task<ActionResult<UserDto>> Register(RegisterDto dto);
+        Task<ActionResult<UserDto>> Login(loginDto dto);
+    }
+}
+
+--- CommentService\CommentService.cs ---
+﻿using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+namespace socialmedia.Repositories.CommentService
+{
+    public class CommentService
+    {
+        private readonly DBContext _context;
+
+        public CommentService(DBContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<string> LeaveCommentAsync(int userId, CommentDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Content))
+                throw new ArgumentException("Comment content cannot be empty");
+
+            var postExists = await _context.Posts.AnyAsync(p => p.Id == dto.PostId);
+            if (!postExists)
+                throw new KeyNotFoundException("Target post not found");
+
+            if (dto.ParentCommentId != null)
+            {
+                var parent = await _context.Comments
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(c => c.Id == dto.ParentCommentId.Value);
+
+                if (parent == null)
+                    throw new KeyNotFoundException("Parent comment not found");
+
+                if (parent.PostId != dto.PostId)
+                    throw new InvalidOperationException("Parent comment does not belong to the same post");
+            }
+
+            var comment = new Comment
+            {
+                Content = dto.Content.Trim(),
+                CreatedAt = DateTime.UtcNow,
+                AppUserId = userId,
+                PostId = dto.PostId,
+                ParentCommentId = dto.ParentCommentId
+            };
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return "Comment posted successfully.";
+        }
+    }
+
+}
+
+--- ImpressionService\ImpressionService.cs ---
+﻿using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+namespace socialmedia.Repositories.ImpressionService
+{
+    public class ImpressionService
+    {
+        private readonly DBContext _context;
+
+        public ImpressionService(DBContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<string> ToggleImpressionAsync(int userId, ImpressionDto dto)
+        {
+            if (!Enum.TryParse<ImpressionType>(dto.Type, true, out var type))
+                throw new ArgumentException("Invalid impression type");
+
+            if (dto.PostId == null && dto.CommentId == null)
+                throw new ArgumentException("Either PostId or CommentId must be provided");
+
+            if (dto.PostId != null && dto.CommentId != null)
+                throw new ArgumentException("Provide only one of PostId or CommentId");
+
+            bool isPost = dto.PostId != null;
+            int targetId = isPost ? dto.PostId.Value : dto.CommentId.Value;
+
+            var exists = isPost
+                ? await _context.Posts.AnyAsync(p => p.Id == targetId)
+                : await _context.Comments.AnyAsync(c => c.Id == targetId);
+
+            if (!exists)
+                throw new KeyNotFoundException("Target post or comment does not exist");
+
+            // check if impression exists already
+            var existing = await _context.Impressions.FirstOrDefaultAsync(i =>
+                 i.AppUserId == userId &&
+                 (isPost ? i.PostId == targetId : i.CommentId == targetId)
+             );
+
+
+            if (existing != null)
+            {
+                if (existing.Type == type)
+                {
+                    // Same type = toggle off
+                    _context.Impressions.Remove(existing);
+                    await _context.SaveChangesAsync();
+                    return "Impression removed.";
+                }
+                else
+                {
+                    // Different type = replace with new type
+                    _context.Impressions.Remove(existing);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+
+            // Create new impression
+            var newImpression = new Impression
+            {
+                AppUserId = userId,
+                CreatedAt = DateTime.UtcNow,
+                Type = type,
+                PostId = isPost ? targetId : null,
+                CommentId = isPost ? null : targetId
+            };
+
+            _context.Impressions.Add(newImpression);
+            await _context.SaveChangesAsync();
+            return "Impression added.";
+        }
+    }
+}
+
+--- PostService\IPostService.cs ---
+﻿using socialmedia.DTOs;
+using socialmedia.Entities;
+
+namespace socialmedia.Repositories.PostService
+{
+    public interface IPostService
+    {
+        Task<Post> CreatePostAsync(createPostDto postDto);
+        Task<bool> DeletePostAsync(int postId);
+    }
+
+}
+
+--- PostService\PostService.cs ---
+﻿using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+namespace socialmedia.Repositories.PostService
+{
+    public class PostService : IPostService
+    {
+        private readonly DBContext _context;
+
+        public PostService(DBContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<Post> CreatePostAsync(createPostDto postDto)
+        {
+            var userExists = await _context.Users.AnyAsync(u => u.Id == postDto.AppUserId);
+            //if (!userExists)
+            //    throw new ArgumentException("Invalid user ID: user does not exist.");
+
+            var post = new Post
+            {
+                Content = postDto.Content,
+                CreatedAt = DateTime.UtcNow,
+                AppUserId = postDto.AppUserId
+            };
+
+            _context.Posts.Add(post);
+            await _context.SaveChangesAsync();
+            return post;
+        }
+
+        public async Task<bool> DeletePostAsync(int postId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+            if (post == null) return false;
+
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+    }
+
+}
+
+--- UserFollowService\IUserFollowService.cs ---
+﻿namespace socialmedia.Repositories.UserFollowService
+{
+    public interface IUserFollowService
+    {
+        Task<bool> FollowUserAsync(string currentUsername, string targetUsername);
+        Task<bool> UnfollowUserAsync(string currentUsername, string targetUsername);
+    }
+}
+
+--- UserFollowService\UserFollowService.cs ---
+﻿using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.Entities;
+
+namespace socialmedia.Repositories.UserFollowService
+{
+    public class UserFollowService : IUserFollowService
+    {
+        private readonly DBContext _context;
+
+        public UserFollowService(DBContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<bool> FollowUserAsync(string currentUsername, string targetUsername)
+        {
+            if (currentUsername.ToLower() == targetUsername.ToLower())
+                return false;
+
+            var follower = await _context.Users
+                .Include(u => u.Following)
+                .FirstOrDefaultAsync(u => u.UserName.ToLower() == currentUsername.ToLower());
+
+            var followee = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserName.ToLower() == targetUsername.ToLower());
+
+            if (follower == null || followee == null)
+                return false;
+
+            var alreadyFollowing = await _context.UserFollows.AsNoTracking()
+                .AnyAsync(f => f.FollowerId == follower.Id && f.FolloweeId == followee.Id);
+
+            if (alreadyFollowing)
+                return false;
+
+            var follow = new UserFollow
+            {
+                FollowerId = follower.Id,
+                FolloweeId = followee.Id
+            };
+
+            _context.UserFollows.Add(follow);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UnfollowUserAsync(string currentUsername, string targetUsername)
+        {
+            var follower = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserName.ToLower() == currentUsername.ToLower());
+
+            var followee = await _context.Users
+                .FirstOrDefaultAsync(u => u.UserName.ToLower() == targetUsername.ToLower());
+
+            if (follower == null || followee == null)
+                return false;
+
+            var follow = await _context.UserFollows
+                .FirstOrDefaultAsync(f => f.FollowerId == follower.Id && f.FolloweeId == followee.Id);
+
+            if (follow == null)
+                return false;
+
+            _context.UserFollows.Remove(follow);
+            return await _context.SaveChangesAsync() > 0;
+        }
+    }
+}
+
+--- UserService\IUserService.cs ---
+﻿
+
+using Microsoft.AspNetCore.Mvc;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+public interface IUserService
+{
+    Task<AppUser> GetUser(int id);
+    Task<userProfileDto?> GetUserByUsername(string username);
+    Task<IEnumerable<activeusersDto>> GetUsers();
+    Task<IEnumerable<activeusersDto>> GetUsersBySearch(string searchTerm);
+}
+
+--- UserService\UserService .cs ---
+﻿// Services/UserService.cs
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.DTOs.userProfileDtos;
+using socialmedia.Entities;
+
+public class UserService : IUserService
+{
+    private readonly DBContext _context;
+
+    public UserService(DBContext context)
+    {
+        _context = context;
+    }
+
+    
+
+    public async Task<AppUser> GetUser(int id)
+    {
+        return await _context.Users.FindAsync(id);
+    }
+
+    public async Task<userProfileDto?> GetUserByUsername(string username)
+    {
+        //    var query = _context.Users
+        //.Where(u => u.UserName.ToLower() == username.ToLower())
+        //.Select(u => new userProfileDto
+        //{
+        //    username = u.UserName,
+        //    avatar = u.avatar,
+        //    bio = u.Bio,
+        //    title = u.Title,
+        //    noOfPosts = u.Posts.Count,
+        //    noOfFollowers = u.Followers.Count,
+        //    noOfFollowing = u.Following.Count,
+        //    followers = u.Followers.Select(f => new activeusersDto
+        //    {
+        //        username = f.Follower.UserName,
+        //        avatar = f.Follower.avatar
+        //    }).ToList(),
+
+        //    following = u.Following.Select(f => new activeusersDto
+        //    {
+        //        username = f.Followee.UserName,
+        //        avatar = f.Followee.avatar
+        //    }).ToList(),
+        //    socialLinks = u.SocialLinks.Select(link => link.Url).ToList()
+        //});
+
+        //    var sql = query.ToQueryString();
+        //    Console.WriteLine(sql);
+
+        return await _context.Users
+    .Where(u => u.UserName.ToLower() == username.ToLower())
+    .Select(u => new userProfileDto
+    {
+        username = u.UserName,
+        avatar = u.avatar,
+        bio = u.Bio,
+        title = u.Title,
+        noOfPosts = u.Posts.Count,
+        noOfFollowers = u.Followers.Count,
+        noOfFollowing = u.Following.Count,
+        followers = u.Followers.Select(f => new activeusersDto
+        {
+            username = f.Follower.UserName,
+            avatar = f.Follower.avatar
+        }).ToList(),
+
+        following = u.Following.Select(f => new activeusersDto
+        {
+            username = f.Followee.UserName,
+            avatar = f.Followee.avatar
+        }).ToList(),
+
+        socialLinks = u.SocialLinks.Select(link => link.Url).ToList(),
+
+        posts = u.Posts.Select(p => new profilepostDto
+        {
+            Content = p.Content,
+            CreatedAt = p.CreatedAt,
+
+            Impressions = p.Impressions.Select(i => new profileimpressionDto
+            {
+                Type = i.Type.ToString(),
+                CreatedAt = i.CreatedAt,
+                username = i.AppUser.UserName,
+                avatar = i.AppUser.avatar
+            }).ToList(),
+
+            Comments = p.Comments
+                .Where(c => c.ParentCommentId == null)
+                .Select(c => new profilecommentDto
+                {
+                    Content = c.Content,
+                    CreatedAt = c.CreatedAt,
+                    username = c.AppUser.UserName,
+                    avatar = c.AppUser.avatar,
+
+                    Impressions = c.Impressions.Select(i => new profileimpressionDto
+                    {
+                        Type = i.Type.ToString(),
+                        CreatedAt = i.CreatedAt,
+                        username = i.AppUser.UserName,
+                        avatar = i.AppUser.avatar
+                    }).ToList(),
+
+                    Replies = c.Replies.Select(r => new profilecommentDto
+                    {
+                        Content = r.Content,
+                        CreatedAt = r.CreatedAt,
+                        username = r.AppUser.UserName,
+                        avatar = r.AppUser.avatar,
+
+                        Impressions = r.Impressions.Select(i => new profileimpressionDto
+                        {
+                            Type = i.Type.ToString(),
+                            CreatedAt = i.CreatedAt,
+                            username = i.AppUser.UserName,
+                            avatar = i.AppUser.avatar
+                        }).ToList()
+                    }).ToList()
+                }).ToList()
+        }).ToList()
+    })
+    .FirstOrDefaultAsync();
+
+    }
+
+    public async Task<IEnumerable<activeusersDto>> GetUsers()
+    {
+        return await _context.Users
+            .Select(u => new activeusersDto
+            {
+                username = u.UserName,
+                avatar = u.avatar
+            })
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<activeusersDto>> GetUsersBySearch(string searchTerm)
+    {
+        return await _context.Users
+            .Where(u => u.UserName.ToLower().StartsWith(searchTerm.ToLower()))
+            .Select(u => new activeusersDto
+            {
+                username = u.UserName,
+                avatar = u.avatar
+            })
+            .ToListAsync();
+    }
+
+
+  
+}
+
+--- globalExceptionHandler.cs ---
+﻿using System.Text.Json;
+
+namespace socialmedia.Middleware
+{
+    public class globalExceptionHandler
+    {
+        private readonly RequestDelegate _next;
+        private readonly ILogger<globalExceptionHandler> _logger;
+        private readonly IHostEnvironment _env;
+
+        public globalExceptionHandler(RequestDelegate next, ILogger<globalExceptionHandler> logger, IHostEnvironment env)
+        {
+            _next = next;
+            _logger = logger;
+            _env = env;
+        }
+
+        public async Task Invoke(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                context.Response.ContentType = "application/json";
+
+                var response = _env.IsDevelopment()
+                    ? new ApiException
+                    {
+                        StatusCode = context.Response.StatusCode,
+                        Message = ex.Message,
+                        Details = ex.StackTrace?.ToString()
+                    }
+                    : new ApiException
+                    {
+                        StatusCode = context.Response.StatusCode,
+                        Message = "Internal Server Error",
+                        Details = null
+                    };
+
+                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+                var json = JsonSerializer.Serialize(response, options);
+                await context.Response.WriteAsync(json);
+            }
+        }
+
+        public class ApiException
+        {
+            public int StatusCode { get; set; }
+            public string Message { get; set; }
+            public string? Details { get; set; }
+        }
+    }
+}
+
+--- AppUser.cs ---
+﻿namespace socialmedia.Entities
+{
+    public class AppUser
+    {
+        public int Id { get; set; }
+        public string? UserName { get; set; }
+        public string? avatar { get; set; }
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
+
+        public string? Bio { get; set; }
+        public string? Title { get; set; }
+
+        public ICollection<Post> Posts { get; set; } = new List<Post>();
+        public ICollection<UserFollow> Followers { get; set; } = new List<UserFollow>();
+        public ICollection<UserFollow> Following { get; set; } = new List<UserFollow>();
+        public ICollection<SocialLink> SocialLinks { get; set; } = new List<SocialLink>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<Impression> Impressions { get; set; } = new List<Impression>();
+
+    }
+}
+
+--- Comment.cs ---
+﻿namespace socialmedia.Entities
+{
+    public class Comment
+    {
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
+        public int PostId { get; set; }
+        public Post Post { get; set; }
+
+        public int? ParentCommentId { get; set; } 
+        public Comment ParentComment { get; set; }
+        public ICollection<Impression> Impressions { get; set; } = new List<Impression>();
+        public ICollection<Comment> Replies { get; set; } = new List<Comment>();
+
+    }
+}
+
+--- Impression.cs ---
+﻿using System;
+
+namespace socialmedia.Entities
+{
+    public class Impression
+    {
+        public int Id { get; set; }
+        public ImpressionType Type { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
+        public int? PostId { get; set; } 
+        public Post Post { get; set; }
+
+        public int? CommentId { get; set; }
+        public Comment Comment { get; set; }
+    }
+    public enum ImpressionType
+    {
+        Like,
+        Love,
+        Sad,
+        Angry,
+        Care
+    }
+}
+
+--- Post.cs ---
+﻿namespace socialmedia.Entities
+{
+    public class Post
+    {
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<Impression> Impressions { get; set; } = new List<Impression>();
+
+    }
+}
+
+--- SocialLink.cs ---
+﻿namespace socialmedia.Entities
+{
+    public class SocialLink
+    {
+        public int Id { get; set; }
+        public string Url { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
+
+
+    }
+}
+
+--- UserFollow.cs ---
+﻿namespace socialmedia.Entities
+{
+    public class UserFollow
+    {
+        public int FollowerId { get; set; }
+        public AppUser Follower { get; set; }
+
+        public int FolloweeId { get; set; }
+        public AppUser Followee { get; set; }
+    }
+}
+
+--- activeusersDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class activeusersDto
+    {
+        public string username { get; set; }
+
+        public string avatar { get; set; }
+    }
+}
+
+--- CommentDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class CommentDto
+    {
+        public string Content { get; set; }
+        public int PostId { get; set; }
+        public int? ParentCommentId { get; set; }
+    }
+}
+
+--- createPostDto.cs ---
+﻿using socialmedia.Entities;
+
+namespace socialmedia.DTOs
+{
+    public class createPostDto
+    {
+        public string Content { get; set; }
+
+        public int AppUserId { get; set; }
+    }
+}
+
+--- ImpressionDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class ImpressionDto
+    {
+        public string Type { get; set; } 
+        public int? PostId { get; set; }
+        public int? CommentId { get; set; }
+    }
+
+}
+
+--- loginDto.cs ---
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace socialmedia.DTOs
+{
+    public class loginDto
+    {
+        [Required(ErrorMessage = "Username is required")]
+        [MinLength(5, ErrorMessage = "Username must be at least 5 characters")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+        public string Password { get; set; }
+    }
+}
+
+--- postDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class postDto
+    {
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+    }
+
+}
+
+--- RegisterDto.cs ---
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace socialmedia.DTOs
+{
+    public class RegisterDto
+    {
+        [Required(ErrorMessage = "Username is required")]
+        [MinLength(5, ErrorMessage = "Username must be at least 5 characters")]
+        public string Username { get; set; }
+
+        public string? avatar { get; set; }
+        [Required(ErrorMessage = "Password is required")]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+        public string Password { get; set; }
+    }
+}
+
+--- UserDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class UserDto
+    {
+        public string Username { get; set; }
+        public string Token { get; set; }
+    }
+}
+
+--- UserFollowStatsDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+    public class UserFollowStatsDto
+    {
+        public int FollowersCount { get; set; }
+        public int FollowingCount { get; set; }
+    }
+}
+
+--- UserPostCountDto.cs ---
+﻿namespace socialmedia.DTOs
+{
+   
+        public class UserPostCountDto
+        {
+            public int PostCount { get; set; }
+        }
+
+    
+}
+
+--- userProfileDto.cs ---
+﻿using socialmedia.DTOs.userProfileDtos;
+
+namespace socialmedia.DTOs
+{
+    public class userProfileDto
+    {
+        public string username { get; set; }
+        public string avatar { get; set; }
+        public string bio { get; set; }
+        public string title { get; set; }
+        public int noOfPosts { get; set; }
+        public int noOfFollowers { get; set; }
+        public int noOfFollowing { get; set; }
+        public List<string> socialLinks { get; set; }
+        public List<activeusersDto> followers { get; set; }
+        public List<activeusersDto> following { get; set; }
+        public List<profilepostDto> posts { get; set; }  
+
+    }
+}

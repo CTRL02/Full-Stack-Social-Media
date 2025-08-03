@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using socialmedia.DTOs;
 using socialmedia.Repositories.ImpressionService;
 using System.Security.Claims;
@@ -11,10 +12,12 @@ namespace socialmedia.Controllers
     public class ImpressionsController : ControllerBase
     {
         private readonly ImpressionService _service;
+        private readonly IStringLocalizer<ImpressionsController> _localizer;
 
-        public ImpressionsController(ImpressionService service)
+        public ImpressionsController(ImpressionService service, IStringLocalizer<ImpressionsController> localizer)
         {
             _service = service;
+            _localizer = localizer;
         }
 
         [HttpPost("leaveImpression")]
@@ -25,13 +28,29 @@ namespace socialmedia.Controllers
 
             try
             {
-                var message = await _service.ToggleImpressionAsync(userId, dto);
+                var result = await _service.ToggleImpressionAsync(userId, dto);
+                var message = result ? _localizer["ImpressionAdded"].Value
+                                  : _localizer["ImpressionRemoved"].Value;
                 return Ok(new { message });
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(new
+                {
+                    error = ex.Message switch
+                    {
+                        "InvalidImpressionType" => _localizer["InvalidImpressionType"].Value,
+                        "TargetIdRequired" => _localizer["TargetIdRequired"].Value,
+                        "SingleTargetRequired" => _localizer["SingleTargetRequired"].Value,
+                        _ => ex.Message
+                    }
+                });
             }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new { error = _localizer["TargetNotFound"].Value });
+            }
+          
         }
     }
 }

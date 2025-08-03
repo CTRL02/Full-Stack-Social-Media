@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using socialmedia.DTOs;
 using socialmedia.Repositories.PostService;
+using System.Security.Claims;
 
 namespace socialmedia.Controllers
 {
@@ -10,10 +12,11 @@ namespace socialmedia.Controllers
     public class PostController : ControllerBase
     {
         private readonly IPostService _postService;
-
-        public PostController(IPostService postService)
+        private readonly IStringLocalizer<PostController> stringLocalizer;
+        public PostController(IPostService postService, IStringLocalizer<PostController> stringLocalizer)
         {
             _postService = postService;
+            this.stringLocalizer = stringLocalizer;
         }
         [Authorize]
         [HttpPost]
@@ -26,8 +29,15 @@ namespace socialmedia.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeletePost(int id)
         {
-            var result = await _postService.DeletePostAsync(id);
-            if (!result) return NotFound("Post not found");
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+            var result = await _postService.DeletePostAsync(id, userId);
+
+            if (!result) {
+                var notFound = stringLocalizer.GetString("Post not found").Value;
+                return NotFound(notFound); 
+            
+            } 
             return NoContent();
         }
     }

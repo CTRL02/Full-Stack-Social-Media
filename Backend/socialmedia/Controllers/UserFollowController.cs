@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.Extensions.Localization;
 using socialmedia.Repositories.UserFollowService;
 using socialmedia.Services;
 using System.Security.Claims;
@@ -7,11 +9,13 @@ namespace socialmedia.Controllers
 {
     public class UserFollowController:ControllerBase
     {
+        private readonly IStringLocalizer<UserFollowController> stringLocalizer;
         private readonly IUserFollowService _userFollowService;
 
-        public UserFollowController(IUserFollowService userFollowService)
+        public UserFollowController(IUserFollowService userFollowService, IStringLocalizer<UserFollowController> stringLocalizer)
         {
             _userFollowService = userFollowService;
+            this.stringLocalizer = stringLocalizer;
         }
 
 
@@ -22,9 +26,9 @@ namespace socialmedia.Controllers
             var currentUsername = User.FindFirst(ClaimTypes.Name)?.Value;
 
             if (await _userFollowService.FollowUserAsync(currentUsername, targetUsername))
-                return Ok("User followed successfully");
+                return Ok(stringLocalizer["FollowSuccess"].Value);
 
-            return BadRequest("Failed to follow user");
+            return BadRequest(stringLocalizer["FollowError"].Value);
         }
 
         [Authorize]
@@ -34,9 +38,9 @@ namespace socialmedia.Controllers
             var currentUsername = User.FindFirst(ClaimTypes.Name)?.Value;
 
             if (await _userFollowService.UnfollowUserAsync(currentUsername, targetUsername))
-                return Ok("User unfollowed successfully");
+                return Ok(stringLocalizer["UnfollowSuccess"].Value);
 
-            return BadRequest("Failed to unfollow user");
+            return BadRequest(stringLocalizer["UnfollowError"].Value);
         }
     }
 }

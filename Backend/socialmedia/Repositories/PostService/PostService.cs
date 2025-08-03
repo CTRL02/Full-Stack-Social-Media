@@ -16,7 +16,7 @@ namespace socialmedia.Repositories.PostService
 
         public async Task<Post> CreatePostAsync(createPostDto postDto)
         {
-            var userExists = await _context.Users.AnyAsync(u => u.Id == postDto.AppUserId);
+            //var userExists = await _context.Users.AnyAsync(u => u.Id == postDto.AppUserId);
             //if (!userExists)
             //    throw new ArgumentException("Invalid user ID: user does not exist.");
 
@@ -32,11 +32,11 @@ namespace socialmedia.Repositories.PostService
             return post;
         }
 
-        public async Task<bool> DeletePostAsync(int postId)
+        public async Task<bool> DeletePostAsync(int postId, int userId)
         {
             var post = await _context.Posts.FindAsync(postId);
-            if (post == null) return false;
-
+            if (post == null || post.AppUserId != userId) return false;
+    
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
             return true;

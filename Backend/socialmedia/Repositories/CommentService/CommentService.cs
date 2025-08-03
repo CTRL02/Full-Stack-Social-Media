@@ -17,11 +17,11 @@ namespace socialmedia.Repositories.CommentService
         public async Task<string> LeaveCommentAsync(int userId, CommentDto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Content))
-                throw new ArgumentException("Comment content cannot be empty");
+                throw new ArgumentException("CommentContentEmpty");
 
             var postExists = await _context.Posts.AnyAsync(p => p.Id == dto.PostId);
             if (!postExists)
-                throw new KeyNotFoundException("Target post not found");
+                throw new KeyNotFoundException("PostNotFound");
 
             if (dto.ParentCommentId != null)
             {
@@ -30,10 +30,10 @@ namespace socialmedia.Repositories.CommentService
                     .FirstOrDefaultAsync(c => c.Id == dto.ParentCommentId.Value);
 
                 if (parent == null)
-                    throw new KeyNotFoundException("Parent comment not found");
+                    throw new KeyNotFoundException("ParentCommentNotFound");
 
                 if (parent.PostId != dto.PostId)
-                    throw new InvalidOperationException("Parent comment does not belong to the same post");
+                    throw new InvalidOperationException("ParentCommentMismatch");
             }
 
             var comment = new Comment
@@ -48,7 +48,7 @@ namespace socialmedia.Repositories.CommentService
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 
-            return "Comment posted successfully.";
+            return "CommentPostedSuccess";
         }
     }
 

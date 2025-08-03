@@ -6,7 +6,7 @@ namespace socialmedia.Repositories.PostService
     public interface IPostService
     {
         Task<Post> CreatePostAsync(createPostDto postDto);
-        Task<bool> DeletePostAsync(int postId);
+        Task<bool> DeletePostAsync(int postId, int userId);
     }
 
 }

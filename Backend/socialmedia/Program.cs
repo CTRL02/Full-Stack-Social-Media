@@ -11,11 +11,12 @@ using socialmedia.Repositories.UserFollowService;
 using socialmedia.Entities;
 using socialmedia.Repositories.ImpressionService;
 using socialmedia.Repositories.CommentService;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -81,6 +82,9 @@ builder.Services.AddScoped<CommentService>();
 
 
 
+
+
+
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
@@ -100,13 +104,22 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 //add if development here but removed to host on monster asp net
-    app.UseSwagger();
-    app.UseSwaggerUI();
+var supportedCultures = new[] { "en-US", "ar" };
+var localizationOptions =
+    new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseMiddleware<globalExceptionHandler>();
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -120,11 +133,10 @@ app.Run();
 
 
 
-    public class JwtSettings
-    {
-        public string Key { get; set; }
-        public string Issuer { get; set; }
-        public string Audience { get; set; }
-        public int ExpiresInMinutes { get; set; }
-    }
-
+public class JwtSettings
+{
+    public string Key { get; set; }
+    public string Issuer { get; set; }
+    public string Audience { get; set; }
+    public int ExpiresInMinutes { get; set; }
+}

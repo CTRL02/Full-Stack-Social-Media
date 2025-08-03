@@ -1,0 +1,409 @@
+
+--- userProfileDtos\profilecommentDto.cs ---
+﻿namespace socialmedia.DTOs.userProfileDtos
+{
+    public class profilecommentDto
+    {
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string username { get; set; }
+        public string avatar { get; set; }
+        public List<profileimpressionDto> Impressions { get; set; }
+        public List<profilecommentDto> Replies { get; set; }
+    }
+}
+
+--- userProfileDtos\profileimpressionDto.cs ---
+﻿namespace socialmedia.DTOs.userProfileDtos
+{
+    public class profileimpressionDto
+    {
+        public string Type { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string username { get; set; }
+        public string avatar { get; set; }
+    }
+}
+
+--- userProfileDtos\profilepostDto.cs ---
+﻿namespace socialmedia.DTOs.userProfileDtos
+{
+    public class profilepostDto
+    {
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public List<profileimpressionDto> Impressions { get; set; }
+        public List<profilecommentDto> Comments { get; set; }
+    }
+}
+
+--- DBContext.cs ---
+﻿using Microsoft.EntityFrameworkCore;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+namespace socialmedia.Data
+{
+    public class DBContext : DbContext
+    {
+        public DBContext(DbContextOptions<DBContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<UserFollowStatsDto>().HasNoKey();
+            modelBuilder.Entity<UserPostCountDto>().HasNoKey();
+
+            modelBuilder.Entity<UserFollow>()
+                .HasKey(uf => new { uf.FollowerId, uf.FolloweeId });
+
+            modelBuilder.Entity<UserFollow>()
+                .HasOne(uf => uf.Follower)
+                .WithMany(u => u.Following)
+                .HasForeignKey(uf => uf.FollowerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<UserFollow>()
+                .HasOne(uf => uf.Followee)
+                .WithMany(u => u.Followers)
+                .HasForeignKey(uf => uf.FolloweeId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.ParentComment)
+                .WithMany(c => c.Replies)
+                .HasForeignKey(c => c.ParentCommentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Post)
+                .WithMany(p => p.Comments)
+                .HasForeignKey(c => c.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.AppUser)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+
+            modelBuilder.Entity<Impression>()
+                .HasOne(i => i.Post)
+                .WithMany(p => p.Impressions)
+                .HasForeignKey(i => i.PostId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Impression>()
+                .HasOne(i => i.Comment)
+                .WithMany(c => c.Impressions)
+                .HasForeignKey(i => i.CommentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Impression>()
+                .HasOne(i => i.AppUser)
+                .WithMany(u => u.Impressions)
+                .HasForeignKey(i => i.AppUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
+            // Indexes
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(u => u.UserName)
+                .IsUnique();
+
+            modelBuilder.Entity<Post>()
+                .HasIndex(p => p.AppUserId);
+
+            modelBuilder.Entity<SocialLink>()
+                .HasIndex(s => s.AppUserId);
+
+            modelBuilder.Entity<UserFollow>()
+                .HasIndex(uf => uf.FolloweeId);
+
+            modelBuilder.Entity<UserFollow>()
+                .HasIndex(uf => uf.FollowerId);
+
+
+            // Ensure a user can only leave one impression per post
+            modelBuilder.Entity<Impression>()
+                .HasIndex(i => new { i.AppUserId, i.PostId })
+                .IsUnique()
+                .HasFilter("[PostId] IS NOT NULL");
+
+            // Ensure a user can only leave one impression per comment
+            modelBuilder.Entity<Impression>()
+                .HasIndex(i => new { i.AppUserId, i.CommentId })
+                .IsUnique()
+                .HasFilter("[CommentId] IS NOT NULL");
+
+        }
+
+
+
+        public DbSet<UserFollowStatsDto> UserFollowStats { get; set; } 
+
+        public DbSet<AppUser> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<UserFollow> UserFollows { get; set; }
+        public DbSet<SocialLink> SocialLinks { get; set; }
+        public DbSet<UserPostCountDto> UserPostCounts { get; set; }
+
+        // both are not needed as i am using collection inside posts and appuser entities but added for flexibilty -- can be removed --
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Impression> Impressions { get; set; }
+
+
+    }
+}
+
+--- AccountController.cs ---
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using socialmedia.Data;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+using socialmedia.Repositories.AccountService;
+using socialmedia.Services;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace socialmedia.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AccountController : ControllerBase
+    {
+        private readonly IAccountService _accountService;
+
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
+        [HttpPost("register")]
+        public async Task<ActionResult<UserDto>> Register(RegisterDto dto)
+        {
+            return await _accountService.Register(dto);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDto>> Login(loginDto dto)
+        {
+            return await _accountService.Login(dto);
+        }
+    }
+}
+
+--- CommentController.cs ---
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using socialmedia.DTOs;
+using socialmedia.Repositories.CommentService;
+using System.Security.Claims;
+
+namespace socialmedia.Controllers
+{
+    public class CommentController:ControllerBase
+    {
+        private readonly CommentService _commentService;
+        public CommentController(CommentService commentService)
+        {
+            _commentService = commentService;
+        }
+
+        [Authorize]
+        [HttpPost("comment")]
+        public async Task<IActionResult> LeaveComment(CommentDto dto)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+            try
+            {
+                var result = await _commentService.LeaveCommentAsync(userId, dto);
+                return Ok(new { message = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+    }
+}
+
+--- ImpressionsController.cs ---
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using socialmedia.DTOs;
+using socialmedia.Repositories.ImpressionService;
+using System.Security.Claims;
+
+namespace socialmedia.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ImpressionsController : ControllerBase
+    {
+        private readonly ImpressionService _service;
+
+        public ImpressionsController(ImpressionService service)
+        {
+            _service = service;
+        }
+
+        [HttpPost("leaveImpression")]
+        [Authorize]
+        public async Task<IActionResult> ToggleImpression([FromBody] ImpressionDto dto)
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+            try
+            {
+                var message = await _service.ToggleImpressionAsync(userId, dto);
+                return Ok(new { message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+    }
+}
+
+--- PostController.cs ---
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using socialmedia.DTOs;
+using socialmedia.Repositories.PostService;
+using socialmedia.Resources;
+
+namespace socialmedia.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PostController : ControllerBase
+    {
+        private readonly IPostService _postService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
+
+        public PostController(IPostService postService, IStringLocalizer<SharedResource> localizer)
+        {
+            _postService = postService;
+            _localizer = localizer;
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> CreatePost([FromBody] createPostDto postDto)
+        {
+            var post = await _postService.CreatePostAsync(postDto);
+            return Ok(post);
+        }
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeletePost(int id)
+        {
+            var result = await _postService.DeletePostAsync(id);
+            if (!result) return NotFound(_localizer["PostNotFound"]);
+            return NoContent();
+        }
+    }
+
+}
+
+--- UserController.cs ---
+﻿// Controllers/UserController.cs
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using socialmedia.DTOs;
+using socialmedia.Entities;
+
+[ApiController]
+[Route("api/[controller]")]
+public class UserController : ControllerBase
+{
+    private readonly IUserService _userService;
+    private readonly ILogger<UserController> _logger;
+
+    public UserController(ILogger<UserController> logger, IUserService userService)
+    {
+        _logger = logger;
+        _userService = userService;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<AppUser>> GetUser(int id)
+    {
+        var user = await _userService.GetUser(id);
+        return user != null ? Ok(user) : NotFound();
+    }
+
+    [HttpGet("name/{username}")]
+    public async Task<ActionResult<userProfileDto>> GetUserByUsername(string username)
+    {
+        var userDto = await _userService.GetUserByUsername(username);
+        return userDto != null ? Ok(userDto) : NotFound();
+    }
+
+    [HttpGet("getusers")]
+    public async Task<ActionResult<IEnumerable<activeusersDto>>> GetUsers()
+    {
+        var users = await _userService.GetUsers();
+        return Ok(users);
+    }
+
+    [HttpGet("getuserswithterm/{searchTerm}")]
+    public async Task<ActionResult<IEnumerable<activeusersDto>>> GetUsersBySearch(string searchTerm)
+    {
+        var users = await _userService.GetUsersBySearch(searchTerm);
+        return Ok(users);
+    }
+
+   
+}
+
+--- UserFollowController.cs ---
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using socialmedia.Repositories.UserFollowService;
+using socialmedia.Services;
+using System.Security.Claims;
+namespace socialmedia.Controllers
+{
+    public class UserFollowController:ControllerBase
+    {
+        private readonly IUserFollowService _userFollowService;
+
+        public UserFollowController(IUserFollowService userFollowService)
+        {
+            _userFollowService = userFollowService;
+        }
+
+
+        [Authorize]
+        [HttpPost("follow/{targetUsername}")]
+        public async Task<IActionResult> FollowUser(string targetUsername)
+        {
+            var currentUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (await _userFollowService.FollowUserAsync(currentUsername, targetUsername))
+                return Ok("User followed successfully");
+
+            return BadRequest("Failed to follow user");
+        }
+
+        [Authorize]
+        [HttpDelete("unfollow/{targetUsername}")]
+        public async Task<IActionResult> UnfollowUser(string targetUsername)
+        {
+            var currentUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (await _userFollowService.UnfollowUserAsync(currentUsername, targetUsername))
+                return Ok("User unfollowed successfully");
+
+            return BadRequest("Failed to unfollow user");
+        }
+    }
+}
