@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { allUsersModel } from '../models/allusersModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../services/user';
-import { userProfile } from '../models/userProfile';
+import { UserProfile } from '../models/userProfile';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './memeber-profile.css'
 })
 export class MemeberProfile {
-  user: userProfile | null = null;
+  user: UserProfile | null = null;
   private destroy$ = new Subject<void>();
 
   constructor(private router: Router, private userService: User, private route: ActivatedRoute) { }

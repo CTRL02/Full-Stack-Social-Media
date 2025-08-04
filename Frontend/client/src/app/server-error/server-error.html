@@ -1,7 +1,10 @@
 <div class="error-page">
   <div class="error-content">
     <h1>500</h1>
-    <h2>Internal Server Error</h2>
-    <p>Something went wrong on our end.<br>Please try again later.</p>
+    <h2>{{ 'ERROR.INTERNAL_SERVER_ERROR_TITLE' | translate }}</h2>
+    <p>
+      {{ 'ERROR.INTERNAL_SERVER_ERROR_MESSAGE' | translate }}<br>
+      {{ 'ERROR.TRY_AGAIN_LATER' | translate }}
+    </p>
   </div>
 </div>

@@ -7,16 +7,18 @@ import { Feed } from './feed/feed';
 import { authGuard } from './guard/auth-guard';
 import { Notfound } from './notfound/notfound';
 import { ServerError } from './server-error/server-error';
+import { redirectIfAuthenticatedGuard } from './guard/redirect-if-authenticated-guard-guard';
 
 const routes: Routes = [
+  { path: '', component: Home, canActivate: [redirectIfAuthenticatedGuard] },
   { path: 'feed', component: Feed, canActivate: [authGuard] },
-  { path: '', component: Home },
   { path: 'members/:id', component: MemeberProfile },
   { path: 'messages', component: Messages, canActivate: [authGuard] },
   { path: 'not-found', component: Notfound },
-  { path: 'server-error', component: ServerError},
+  { path: 'server-error', component: ServerError },
   { path: '**', component: Notfound, pathMatch: 'full' },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

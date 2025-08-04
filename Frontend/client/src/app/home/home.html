@@ -1,61 +1,55 @@
 <section class="hero-section ftco-slant">
   <div class="hero-content text-center">
-    <h1>Welcome to socialApp</h1>
-    <p>Connect with friends instantly</p>
+    <h1>{{ 'HOME.WELCOME' | translate }}</h1>
+    <p>{{ 'HOME.CONNECT' | translate }}</p>
     <button class="btn btn-hero btn-lg mt-3 px-4" (click)="toggleRegisterForm()">
-      <i class="fas fa-user-plus me-1"></i> Join Us Now
+      <i class="fas fa-user-plus me-1"></i> {{ 'HOME.JOIN_NOW' | translate }}
     </button>
-
   </div>
   <div class="slant-smoke-overlay"></div>
 </section>
 
 <div class="register-wrapper my-5" *ngIf="showRegisterForm" #registerFormContainer>
-  <h2>Registration</h2>
+  <h2>{{ 'HOME.REGISTRATION' | translate }}</h2>
   <form (ngSubmit)="register()" #registerForm="ngForm">
     <div class="input-box">
-      <input type="text" placeholder="Enter your name" name="username" required [(ngModel)]="model.username">
+      <input type="text" [placeholder]="'HOME.ENTER_NAME' | translate" name="username" required [(ngModel)]="model.username">
     </div>
     <div class="input-box">
-      <input type="password" placeholder="Create password" name="password" required [(ngModel)]="model.password">
+      <input type="password" [placeholder]="'HOME.CREATE_PASSWORD' | translate" name="password" required [(ngModel)]="model.password">
     </div>
     <div class="input-box button">
-      <input type="submit" value="Register Now" [disabled]="registerForm.invalid">
+      <input type="submit" [value]="'HOME.REGISTER_NOW' | translate" [disabled]="registerForm.invalid">
     </div>
   </form>
- 
-
 </div>
-
-
 
 <section class="content-section" *ngIf="!showRegisterForm">
   <div class="content-container">
-
     <ng-container *ngFor="let item of contentItems; let i = index">
       <section class="dynamic-section text-white d-flex align-items-center justify-content-center text-center"
                [ngClass]="{ 'in-view': sectionInView[i] }"
                [ngStyle]="{ 'background-image': 'url(' + item.bgImage + ')' }">
         <div class="overlay"></div>
         <div class="container position-relative">
-          <h2>{{ item.title }}</h2>
-          <p>{{ item.body }}</p>
+          <h2>{{ item.titleKey | translate }}</h2>
+          <p>{{ item.bodyKey | translate }}</p>
+
         </div>
       </section>
-
       <h2 *ngIf="i < contentItems.length - 1" class="divider double-razor"></h2>
     </ng-container>
 
     <h2 class="divider double-razor">    </h2>
 
     <section class="container py-5 active-users-section">
-      <h2 class="text-center text-primary mb-4 fw-bold">Active Users</h2>
+      <h2 class="text-center text-primary mb-4 fw-bold">{{ 'HOME.ACTIVE_USERS' | translate }}</h2>
 
       <div class="row justify-content-center g-4">
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center"
              *ngFor="let user of activeUsers$ | async">
           <div class="rounded-circle overflow-hidden mx-auto user-avatar">
-            <img [src]="user.avatar"
+            <img [src]="user?.avatar || 'assets/default.jpg'"
                  [alt]="user.username"
                  class="img-fluid w-100 h-100 object-fit-cover" />
           </div>
@@ -63,13 +57,7 @@
         </div>
       </div>
     </section>
-
-
-
-
-
   </div>
 </section>
-
 
 <app-footer></app-footer>

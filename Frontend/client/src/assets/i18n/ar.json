@@ -1,0 +1,57 @@
+{
+  "NAV": {
+    "HOME": "الرئيسية",
+    "MESSAGES": "الرسائل",
+    "SEARCH_PLACEHOLDER": "ابحث عن المستخدمين...",
+    "PROFILE": "الملف الشخصي",
+    "LOGOUT": "تسجيل الخروج",
+    "USERNAME": "اسم المستخدم",
+    "PASSWORD": "كلمة المرور",
+    "LOGIN": "تسجيل الدخول"
+  },
+
+
+
+  "HOME": {
+    "WELCOME": "مرحبًا بك في كونكت زون",
+    "CONNECT": "ابق على اتصال بالأصدقاء والعالم من حولك.",
+    "JOIN_NOW": "انضم الآن",
+    "REGISTRATION": "التسجيل",
+    "ENTER_NAME": "أدخل اسمك",
+    "CREATE_PASSWORD": "أنشئ كلمة مرور",
+    "REGISTER_NOW": "سجل الآن",
+    "ACTIVE_USERS": "المستخدمون النشطون",
+
+    "FRIEND_SUGGESTIONS_TITLE": "اقتراحات الأصدقاء",
+    "FRIEND_SUGGESTIONS_BODY": "تواصل مع أشخاص جدد بناءً على اهتماماتك.",
+    "NEW_MESSAGES_TITLE": "رسائل جديدة",
+    "NEW_MESSAGES_BODY": "اطلع على رسائلك غير المقروءة ورد عليها بسرعة."
+  },
+  "PROFILE": {
+    "USERNAME": "اسم المستخدم",
+    "MEMBER": "عضو",
+    "ABOUT": "حول",
+    "NO_BIO": "لا توجد نبذة تعريفية",
+    "NO_POSTS": "لا توجد منشورات",
+    "POSTS": "المنشورات",
+    "FOLLOWERS": "المتابعون",
+    "FOLLOWING": "يتابع",
+    "POSTS_TITLE": "المنشورات"
+  },
+  "CHAT": {
+    "MESSAGES": "الرسائل",
+    "PLACEHOLDER": "اكتب رسالة...",
+    "SEND": "إرسال",
+    "NO_CHAT_SELECTED": "اختر محادثة لبدء الرسائل."
+  },
+  "ERROR": {
+    "PAGE_NOT_FOUND_TITLE": "الصفحة غير موجودة",
+    "PAGE_NOT_FOUND_MESSAGE": "الصفحة التي تبحث عنها غير موجودة.",
+    "INTERNAL_SERVER_ERROR_TITLE": "خطأ في الخادم الداخلي",
+    "INTERNAL_SERVER_ERROR_MESSAGE": "حدث خطأ من طرفنا.",
+    "TRY_AGAIN_LATER": "يرجى المحاولة مرة أخرى لاحقاً."
+  }
+
+
+}
+

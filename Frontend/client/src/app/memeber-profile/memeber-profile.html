@@ -1,7 +1,7 @@
 <div class="profile-container">
   <div class="profile-header">
     <div class="profile-avatar">
-      <img [src]="user?.avatar || 'assets/default-avatar.jpg'" alt="Profile picture">
+      <img [src]="user?.avatar || 'assets/default.jpg'" alt="Profile picture">
     </div>
     <h1>{{ user?.username || 'Username' }}</h1>
     <h2>{{ user?.title || 'Member' }}</h2>
@@ -9,7 +9,7 @@
 
   <div class="profile-content">
     <div class="profile-section about-section">
-      <h3>About</h3>
+      <h3>{{ 'PROFILE.ABOUT' | translate }}</h3>
       <p>{{ user?.bio || 'No bio available' }}</p>
     </div>
 
@@ -17,13 +17,13 @@
 
       <div class="stat-item">
         <span class="stat-value">{{ user?.noOfPosts || 'no posts' }}</span>
-        <span class="stat-label">Posts</span>
+        <span class="stat-label">{{ 'PROFILE.POSTS' | translate }}</span>
       </div>
 
       <!-- Followers dropdown -->
       <div class="stat-item dropdown">
         <span class="stat-value">{{ user?.noOfFollowers || 0 }}</span>
-        <span class="stat-label">Followers</span>
+        <span class="stat-label">{{ 'PROFILE.FOLLOWERS' | translate }}</span>
         <ul class="dropdown-menu">
           <li *ngFor="let follower of user?.followers">
             <img [src]="follower.avatar" alt="avatar" class="dropdown-avatar">
@@ -35,7 +35,7 @@
       <!-- Following dropdown -->
       <div class="stat-item dropdown">
         <span class="stat-value">{{ user?.noOfFollowing || 0 }}</span>
-        <span class="stat-label">Following</span>
+        <span class="stat-label">{{ 'PROFILE.FOLLOWING' | translate }}</span>
         <ul class="dropdown-menu">
           <li *ngFor="let followee of user?.following">
             <img [src]="followee.avatar" alt="avatar" class="dropdown-avatar">
@@ -55,23 +55,59 @@
   </div>
   <!--will do later-->
   <!--<button class="btn btn-primary">Edit Profile</button>-->
-
   <!-- User Posts Section -->
   <div class="profile-section posts-section" *ngIf="user?.posts?.length">
-    <h3>{{ user?.username }}'s Posts</h3>
+    <h3>{{ user?.username }} {{ 'PROFILE.POSTS_TITLE' | translate }}</h3>
 
-    <div class="post" *ngFor="let post of user?.posts">
-      <div class="post-header">
-        <img [src]="user?.avatar" class="post-avatar" alt="avatar">
-        <div>
-          <div class="post-username">{{ user?.username }}</div>
-          <div class="post-date">{{ post?.createdAt | date:'medium' }}</div>
+    <div class="posts-container">
+      <div class="post" *ngFor="let post of user?.posts">
+        <div class="post-header">
+          <img [src]="user?.avatar || 'assets/default.jpg'" class="post-avatar" alt="avatar">
+          <div>
+            <div class="post-username">{{ user?.username }}</div>
+            <div class="post-date">{{ post?.createdAt | date:'medium' }}</div>
+          </div>
         </div>
-      </div>
-      <div class="post-content">
-        <p>{{ post?.content }}</p>
+
+        <div class="post-content">
+          <p>{{ post?.content }}</p>
+        </div>
+
+        <!-- Action Area -->
+        <div class="row g-1 mt-3">
+          <!-- Impressions -->
+          <div class="col-6 text-center position-relative like-wrapper">
+            <a [routerLink]=""
+               class="text-decoration-none d-block text-muted small mb-1">
+              {{ post?.impressions?.length || 123 }} Impressions
+            </a>
+
+            <div class="reaction-container">
+              <button class="btn btn-light w-100 btn-sm rounded-pill">Like</button>
+
+              <div class="reactions-menu bg-body shadow p-2 rounded-pill">
+                <img src="assets/reactions/like.png" alt="Like" class="reaction-icon">
+                <img src="assets/reactions/love.png" alt="Love" class="reaction-icon">
+                <img src="assets/reactions/care.png" alt="Care" class="reaction-icon">
+                <img src="assets/reactions/sad.png" alt="Sad" class="reaction-icon">
+                <img src="assets/reactions/angry.png" alt="Angry" class="reaction-icon">
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments -->
+          <div class="col-6 text-center">
+            <a [routerLink]=""
+               class="text-decoration-none d-block text-muted small mb-1">
+              {{ post?.comments?.length || 12 }} Comments
+            </a>
+
+            <button class="btn btn-light w-100 btn-sm rounded-pill"
+                    [routerLink]="">
+              Comment
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-</div>

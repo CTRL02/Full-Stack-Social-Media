@@ -1,6 +1,6 @@
 <div class="chat-popup-window" [class.minimized]="isMinimized">
   <div class="chat-header">
-    <span>Messages</span>
+    <span>{{ 'CHAT.MESSAGES' | translate }}</span>
     <div class="chat-controls">
       <button (click)="toggleMinimize()">_</button>
       <button (click)="closeChat()">×</button>
@@ -34,14 +34,14 @@
                  [(ngModel)]="newMessage"
                  name="message"
                  class="form-control"
-                 placeholder="Type a message..."
+                 [placeholder]="'CHAT.PLACEHOLDER' | translate"
                  required />
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="submit" class="btn btn-primary">{{ 'CHAT.SEND' | translate }}</button>
         </form>
       </div>
 
       <div *ngIf="!selectedChat" class="no-chat">
-        Select a chat to start messaging.
+        {{ 'CHAT.NO_CHAT_SELECTED' | translate }}
       </div>
     </div>
   </div>

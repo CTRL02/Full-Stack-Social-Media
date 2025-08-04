@@ -22,16 +22,17 @@ export class Home {
 
   contentItems = [
     {
-      title: 'Friend Suggestions',
-      body: 'Find and connect with new people based on your interests.',
+      titleKey: 'HOME.FRIEND_SUGGESTIONS_TITLE',
+      bodyKey: 'HOME.FRIEND_SUGGESTIONS_BODY',
       bgImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1400&q=80'
     },
     {
-      title: 'New Messages',
-      body: 'Check out your unread messages and respond quickly.',
+      titleKey: 'HOME.NEW_MESSAGES_TITLE',
+      bodyKey: 'HOME.NEW_MESSAGES_BODY',
       bgImage: 'https://www.n2growth.com/wp-content/uploads/2020/06/messaging-by-desk.jpg'
     }
   ];
+
   sectionInView: boolean[] = [];
 
   activeUsers$!: Observable<allUsersModel[]>;

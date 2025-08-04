@@ -16,6 +16,13 @@ import { SharedModule } from './shared-module';
 import { ErrorInterceptor } from './interceptor/error-interceptor';
 import { Notfound } from './notfound/notfound';
 import { ServerError } from './server-error/server-error';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
 @NgModule({
@@ -36,7 +43,16 @@ import { ServerError } from './server-error/server-error';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+
     
 
   ],

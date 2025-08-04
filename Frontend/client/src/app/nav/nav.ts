@@ -10,6 +10,7 @@ import { UiFunctions } from '../services/ui-functions';
 import { allUsersModel } from '../models/allusersModel';
 import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../services/darktoggle';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav',
@@ -29,9 +30,14 @@ export class Nav {
   allUsers: allUsersModel[] = [];
   showSearchResults = false;
   isDarkMode = false;
+  currentLang: string | null = 'en';
 
-  constructor(private themeService : ThemeService,private authServ: Account, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
-    this.user$ = this.authServ.CurrentUser$;  
+  constructor(private themeService: ThemeService, private authServ: Account, private translate: TranslateService
+, private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
+    this.user$ = this.authServ.CurrentUser$;
+    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang();
+    const savedLang = localStorage.getItem('lang') || 'en';
+    this.translate.use(savedLang);
   }
 
 
@@ -69,6 +75,11 @@ export class Nav {
 
   }
 
+  switchLanguage() {
+    this.currentLang = this.currentLang === 'en' ? 'ar' : 'en';
+    this.translate.use(this.currentLang);
+    localStorage.setItem('lang', this.currentLang);
+  }
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;

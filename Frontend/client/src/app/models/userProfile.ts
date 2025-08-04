@@ -1,7 +1,8 @@
 import { allUsersModel } from "./allusersModel";
 import { PostModel } from "./postModel";
+import { ProfilePostDto } from "./ProfilePostDto";
 
-export interface userProfile {
+export interface UserProfile {
   username: string;
   avatar: string;
   bio: string;
@@ -9,8 +10,8 @@ export interface userProfile {
   noOfPosts: number;
   noOfFollowers: number;
   noOfFollowing: number;
-  followers: allUsersModel[];    
-  following: allUsersModel[];    
+  followers: allUsersModel[];
+  following: allUsersModel[];
   socialLinks: string[];
-  posts: PostModel[];
+  posts: ProfilePostDto[];
 }

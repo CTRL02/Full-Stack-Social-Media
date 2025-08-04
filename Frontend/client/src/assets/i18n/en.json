@@ -1,0 +1,52 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "MESSAGES": "Messages",
+    "SEARCH_PLACEHOLDER": "Search users...",
+    "PROFILE": "Profile",
+    "LOGOUT": "Logout",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN": "Login"
+  },
+
+  "HOME": {
+    "WELCOME": "Welcome to ConnectZone",
+    "CONNECT": "Stay connected with friends and the world around you.",
+    "JOIN_NOW": "Join Now",
+    "REGISTRATION": "Registration",
+    "ENTER_NAME": "Enter your name",
+    "CREATE_PASSWORD": "Create a password",
+    "REGISTER_NOW": "Register Now",
+    "ACTIVE_USERS": "Active Users",
+
+    "FRIEND_SUGGESTIONS_TITLE": "Friend Suggestions",
+    "FRIEND_SUGGESTIONS_BODY": "Find and connect with new people based on your interests.",
+    "NEW_MESSAGES_TITLE": "New Messages",
+    "NEW_MESSAGES_BODY": "Check out your unread messages and respond quickly."
+  },
+  "PROFILE": {
+    "USERNAME": "Username",
+    "MEMBER": "Member",
+    "ABOUT": "About",
+    "NO_BIO": "No bio available",
+    "NO_POSTS": "No posts",
+    "POSTS": "Posts",
+    "FOLLOWERS": "Followers",
+    "FOLLOWING": "Following",
+    "POSTS_TITLE": "'s Posts"
+  },
+  "CHAT": {
+    "MESSAGES": "Messages",
+    "PLACEHOLDER": "Type a message...",
+    "SEND": "Send",
+    "NO_CHAT_SELECTED": "Select a chat to start messaging."
+  },
+  "ERROR": {
+    "PAGE_NOT_FOUND_TITLE": "Page Not Found",
+    "PAGE_NOT_FOUND_MESSAGE": "The page you're looking for doesn't exist.",
+    "INTERNAL_SERVER_ERROR_TITLE": "Internal Server Error",
+    "INTERNAL_SERVER_ERROR_MESSAGE": "Something went wrong on our end.",
+    "TRY_AGAIN_LATER": "Please try again later."
+  }
+}

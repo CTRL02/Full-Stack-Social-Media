@@ -24,6 +24,8 @@
     <PackageJsonDependenciesAngularPlatformBrowser Condition="$(PackageJsonDependenciesAngularPlatformBrowser) == ''">^20.0.0</PackageJsonDependenciesAngularPlatformBrowser>
     <PackageJsonDependenciesAngularRouter Condition="$(PackageJsonDependenciesAngularRouter) == ''">^20.0.0</PackageJsonDependenciesAngularRouter>
     <PackageJsonDependenciesFortawesomeFontawesomeFree Condition="$(PackageJsonDependenciesFortawesomeFontawesomeFree) == ''">^6.7.2</PackageJsonDependenciesFortawesomeFontawesomeFree>
+    <PackageJsonDependenciesNgxTranslateCore Condition="$(PackageJsonDependenciesNgxTranslateCore) == ''">^17.0.0</PackageJsonDependenciesNgxTranslateCore>
+    <PackageJsonDependenciesNgxTranslateHttpLoader Condition="$(PackageJsonDependenciesNgxTranslateHttpLoader) == ''">^8.0.0</PackageJsonDependenciesNgxTranslateHttpLoader>
     <PackageJsonDependenciesPopperjsCore Condition="$(PackageJsonDependenciesPopperjsCore) == ''">^2.11.8</PackageJsonDependenciesPopperjsCore>
     <PackageJsonDependenciesBootstrap Condition="$(PackageJsonDependenciesBootstrap) == ''">^5.3.7</PackageJsonDependenciesBootstrap>
     <PackageJsonDependenciesFontAwesome Condition="$(PackageJsonDependenciesFontAwesome) == ''">^4.7.0</PackageJsonDependenciesFontAwesome>
