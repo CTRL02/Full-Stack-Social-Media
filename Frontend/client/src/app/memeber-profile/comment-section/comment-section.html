@@ -1,0 +1,57 @@
+<div class="overlay">
+  <div class="comment-modal">
+    <div class="header d-flex justify-content-between align-items-center mb-2">
+      <h6 class="m-0">Comments</h6>
+      <button class="btn-close" (click)="close.emit()"></button>
+    </div>
+    <hr />
+    <div class="body">
+      <ng-container *ngIf="postData?.length; else noComments">
+        <div class="comment" *ngFor="let comment of postData">
+          <div class="comment-content">
+            <div class="d-flex align-items-center mb-1">
+              <img [src]="comment.avatar || 'assets/default.jpg'" class="avatar me-2" alt="avatar" />
+              <strong>{{ comment.username }}</strong>
+              <span class="text-muted ms-2 small">{{ comment.createdAt }}</span>
+            </div>
+            <p class="mb-1">{{ comment.content }}</p>
+
+            <!-- Impressions -->
+            <div class="impressions d-flex gap-2 mb-2">
+              <small class="text-muted">{{ comment.impressions?.length || 0 }}</small>
+              <small title="Like">👍</small>
+            </div>
+          </div>
+
+          <!-- Replies -->
+          <div class="replies ps-4 border-start ms-3" *ngIf="comment.replies?.length">
+            <ng-container *ngFor="let reply of comment.replies">
+              <div class="comment-content mt-2">
+                <div class="d-flex align-items-center mb-1">
+                  <img [src]="reply.avatar || 'assets/default.jpg'" class="avatar me-2" alt="avatar" />
+                  <strong>{{ reply.username }}</strong>
+                  <span class="text-muted ms-2 small">{{ reply.createdAt }}</span>
+                </div>
+                <p class="mb-1">{{ reply.content }}</p>
+
+                <!-- Impressions for reply -->
+                <div class="impressions d-flex align-items-center gap-1 mb-1">
+                  <small class="text-muted">{{ reply.impressions?.length || 0 }}</small>
+                  <small title="Like">👍</small>
+                </div>
+
+
+              </div>
+            </ng-container>
+          </div>
+
+          <hr />
+        </div>
+      </ng-container>
+
+      <ng-template #noComments>
+        <p>No comments yet</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

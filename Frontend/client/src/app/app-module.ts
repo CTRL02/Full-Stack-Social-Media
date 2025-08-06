@@ -19,6 +19,9 @@ import { ServerError } from './server-error/server-error';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { authInterceptor } from './interceptor/auth-interceptor';
+import { ReactionSection } from './memeber-profile/reaction-section/reaction-section';
+import { CommentSection } from './memeber-profile/comment-section/comment-section';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,7 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     Messages,
     Feed,
     Notfound,
-    ServerError
+    ServerError,
+    ReactionSection,
+    CommentSection,
     
   ],
   imports: [
@@ -57,7 +62,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 
   ],
   providers: [
-    provideBrowserGlobalErrorListeners(),
+    provideBrowserGlobalErrorListeners(), // Optional if you're using this for global error logging
+
+    // Auth Interceptor – adds Authorization header
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: authInterceptor,
+      multi: true
+    },
+
+    // Error Interceptor – handles 401, 403, 500, etc.
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

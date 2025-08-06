@@ -76,38 +76,62 @@
         <!-- Action Area -->
         <div class="row g-1 mt-3">
           <!-- Impressions -->
-          <div class="col-6 text-center position-relative like-wrapper">
-            <a [routerLink]=""
-               class="text-decoration-none d-block text-muted small mb-1">
-              {{ post?.impressions?.length || 123 }} Impressions
+          <div class="col-6 text-center position-relative">
+            <a href="javascript:void(0)"
+               class="text-primary text-decoration-underline small mb-1 d-inline-block position-relative z-1">
+              {{ post?.impressions?.length || 0 }} Impressions
             </a>
 
-            <div class="reaction-container">
-              <button class="btn btn-light w-100 btn-sm rounded-pill">Like</button>
+            <div class="reaction-container d-inline-block position-relative">
+              <button class="btn btn-light btn-sm rounded-pill d-flex align-items-center gap-2">
+                [ngClass]="{ 'reaction-selected': selectedReactions[post.id] }">
+                <img *ngIf="selectedReactions[post.id]"
+                     [src]="reactionIcons[selectedReactions[post.id]]"
+                     class="reaction-icon"
+                     style="width: 18px; height: 18px;" />
+                {{ selectedReactions[post.id] || 'Like' }}
+              </button>
 
-              <div class="reactions-menu bg-body shadow p-2 rounded-pill">
-                <img src="assets/reactions/like.png" alt="Like" class="reaction-icon">
-                <img src="assets/reactions/love.png" alt="Love" class="reaction-icon">
-                <img src="assets/reactions/care.png" alt="Care" class="reaction-icon">
-                <img src="assets/reactions/sad.png" alt="Sad" class="reaction-icon">
-                <img src="assets/reactions/angry.png" alt="Angry" class="reaction-icon">
+              <div class="reactions-menu position-absolute bg-body shadow p-2 rounded-pill">
+                <img src="assets/reactions/like.png" alt="Like" class="reaction-icon"
+                     (click)="leaveImpression('Like', post.id)" />
+                <img src="assets/reactions/love.png" alt="Love" class="reaction-icon"
+                     (click)="leaveImpression('Love', post.id)" />
+                <img src="assets/reactions/care.png" alt="Care" class="reaction-icon"
+                     (click)="leaveImpression('Care', post.id)" />
+                <img src="assets/reactions/sad.png" alt="Sad" class="reaction-icon"
+                     (click)="leaveImpression('Sad', post.id)" />
+                <img src="assets/reactions/angry.png" alt="Angry" class="reaction-icon"
+                     (click)="leaveImpression('Angry', post.id)" />
               </div>
             </div>
           </div>
 
           <!-- Comments -->
           <div class="col-6 text-center">
-            <a [routerLink]=""
-               class="text-decoration-none d-block text-muted small mb-1">
-              {{ post?.comments?.length || 12 }} Comments
+            <a href="javascript:void(0)"
+               (click)="openComments(post.id)"
+               class="text-primary text-decoration-underline small mb-1 d-inline-block">
+              {{ post?.comments?.length || 0 }} Comments
             </a>
 
+
             <button class="btn btn-light w-100 btn-sm rounded-pill"
-                    [routerLink]="">
+                    (click)="openComments(post.id)">
               Comment
             </button>
+
           </div>
         </div>
+
+        <app-comment-section *ngIf="openPostId === post.id"
+                             [postData]="post.comments"
+                             (close)="closeComments()">
+        </app-comment-section>
+
+
       </div>
     </div>
   </div>
+
+

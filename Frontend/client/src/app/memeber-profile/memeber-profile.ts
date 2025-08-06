@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../services/user';
 import { UserProfile } from '../models/userProfile';
 import { Subject, takeUntil } from 'rxjs';
+import { UserActions } from '../services/user-actions';
 
 @Component({
   selector: 'app-memeber-profile',
@@ -14,8 +15,16 @@ import { Subject, takeUntil } from 'rxjs';
 export class MemeberProfile {
   user: UserProfile | null = null;
   private destroy$ = new Subject<void>();
+  selectedReactions: { [postId: number]: string } = {};
+  reactionIcons: { [key: string]: string } = {
+    Like: 'assets/reactions/like.png',
+    Love: 'assets/reactions/love.png',
+    Care: 'assets/reactions/care.png',
+    Sad: 'assets/reactions/sad.png',
+    Angry: 'assets/reactions/angry.png'
+  };
 
-  constructor(private router: Router, private userService: User, private route: ActivatedRoute) { }
+  constructor(private router: Router, private userService: User, private route: ActivatedRoute, private userAction: UserActions) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
@@ -40,12 +49,44 @@ export class MemeberProfile {
     this.destroy$.complete();
   }
 
+  leaveImpression(type:string, postId: number, commentId?: number) {
+    const dto = postId ? { type, postId } : { type, commentId };
+    console.log(dto);
+
+    this.userAction.toggleImpression(dto).subscribe({
+      next: (response) => {
+        console.log(response.message); 
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+    if (this.selectedReactions[postId] === type) {
+      delete this.selectedReactions[postId];
+    } else {
+      this.selectedReactions[postId] = type;
+    }
+  }
+
+
+
   getSocialIcon(link: string): string {
     if (link.includes('linkedin.com')) return 'fab fa-linkedin';
     if (link.includes('github.com')) return 'fab fa-github';
     if (link.includes('twitter.com')) return 'fab fa-twitter';
     if (link.includes('facebook.com')) return 'fab fa-facebook';
     return 'fas fa-globe'; 
+  }
+
+  //comment section pop up window
+  openPostId: number | null = null;
+
+  openComments(postId: number) {
+    this.openPostId = postId;
+  }
+
+  closeComments() {
+    this.openPostId = null;
   }
 
   

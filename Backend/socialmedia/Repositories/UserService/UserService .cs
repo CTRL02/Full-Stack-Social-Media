@@ -79,6 +79,7 @@ public class UserService : IUserService
 
         posts = u.Posts.Select(p => new profilepostDto
         {
+            Id = p.Id,
             Content = p.Content,
             CreatedAt = p.CreatedAt,
 
@@ -94,6 +95,7 @@ public class UserService : IUserService
                 .Where(c => c.ParentCommentId == null)
                 .Select(c => new profilecommentDto
                 {
+                    id = c.Id,
                     Content = c.Content,
                     CreatedAt = c.CreatedAt,
                     username = c.AppUser.UserName,
@@ -109,6 +111,7 @@ public class UserService : IUserService
 
                     Replies = c.Replies.Select(r => new profilecommentDto
                     {
+                        id = r.Id,
                         Content = r.Content,
                         CreatedAt = r.CreatedAt,
                         username = r.AppUser.UserName,

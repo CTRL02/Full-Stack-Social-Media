@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\guard\" />
-    <Folder Include="src\app\interceptor\" />
     <Folder Include="src\assets\reactions\" />
   </ItemGroup>
 </Project>
