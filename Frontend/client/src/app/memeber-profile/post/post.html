@@ -1,0 +1,78 @@
+<div class="post">
+  <div class="post-header">
+    <img [src]="user?.avatar || 'assets/default.jpg'" class="post-avatar" alt="avatar">
+    <div>
+      <div class="post-username">{{ user?.username }}</div>
+      <div class="post-date">{{ post?.createdAt | date:'medium' }}</div>
+    </div>
+  </div>
+
+  <div class="post-content">
+    <p>{{ post?.content }}</p>
+  </div>
+
+  <!-- Action Area -->
+  <div class="row g-2 mt-3">
+    <!-- Impressions -->
+    <div class="col-6 text-center">
+      <a href="javascript:void(0)"
+         class="text-primary text-decoration-underline small d-block mb-1"
+         (click)="openReactions(post.id)">
+        {{ impressionCount }} Impressions
+      </a>
+
+      <div class="reaction-container d-inline-block position-relative w-100"
+           (mouseenter)="showReactions = true"
+           (mouseleave)="showReactions = false">
+        <button class="btn btn-light w-100 btn-sm rounded-pill d-flex justify-content-center align-items-center gap-2"
+                [ngClass]="{ 'reaction-selected': selectedReactions[post.id] }">
+
+          <img *ngIf="selectedReactions[post.id]"
+               [src]="reactionIcons[selectedReactions[post.id]]"
+               class="reaction-icon"
+               style="width: 18px; height: 18px;" />
+          {{ selectedReactions[post.id] || 'Like' }}
+        </button>
+
+        <div class="reactions-menu position-absolute bg-body shadow p-2 rounded-pill"
+             *ngIf="showReactions">
+          <img *ngFor="let r of reactionTypes"
+               [src]="'assets/reactions/' + r.toLowerCase() + '.png'"
+               [alt]="r"
+               class="reaction-icon"
+               (click)="leaveImpression(r, post.id)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="col-6 text-center">
+      <a href="javascript:void(0)"
+         (click)="openComments(post.id)"
+         class="text-primary text-decoration-underline small d-block mb-1">
+        {{ commentCount }} Comments
+      </a>
+
+      <button class="btn btn-light w-100 btn-sm rounded-pill"
+              (click)="openComments(post.id)">
+        Comment
+      </button>
+    </div>
+  </div>
+
+  <!--comment section-->
+  <app-comment-section *ngIf="openPostId === post.id"
+                       [postData]="post.comments"
+                       (commentAdded)="onCommentAdded($event)"
+                       [postId]="post.id"
+                       (close)="closeComments()">
+  </app-comment-section>
+
+  <!--reaction statistics-->
+  <app-reaction-section *ngIf="openReactionPostId === post.id"
+                        [impressions]="getMappedImpressions(post.id)"
+                        (close)="closeReactions()">
+  </app-reaction-section>
+
+
+</div>

@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\impressionservice\\impressionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\repositories\\impressionservice\\impressionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\commentservice\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\repositories\\commentservice\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\userfollowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\userfollowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\impressionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\impressionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\impressionservice\\impressionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\repositories\\impressionservice\\impressionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\userservice\\userservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\dtos\\userprofiledtos\\profilecommentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\commentservice\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\repositories\\commentservice\\commentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|c:\\users\\10\\source\\repos\\socialmedia\\backend\\socialmedia\\repositories\\accountservice\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64C8EDAC-FFF2-4FD7-9F8E-83AC26FF9C06}|socialmedia\\socialmedia.csproj|solutionrelative:socialmedia\\repositories\\accountservice\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -54,12 +54,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
@@ -74,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "UserService .cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Repositories\\UserService\\UserService .cs",
               "RelativeDocumentMoniker": "socialmedia\\Repositories\\UserService\\UserService .cs",
@@ -86,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "profilepostDto.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\DTOs\\userProfileDtos\\profilepostDto.cs",
               "RelativeDocumentMoniker": "socialmedia\\DTOs\\userProfileDtos\\profilepostDto.cs",
@@ -98,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "profilecommentDto.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\DTOs\\userProfileDtos\\profilecommentDto.cs",
               "RelativeDocumentMoniker": "socialmedia\\DTOs\\userProfileDtos\\profilecommentDto.cs",
@@ -110,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserFollowController.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\UserFollowController.cs",
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\UserFollowController.cs",
@@ -122,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "ImpressionService.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Repositories\\ImpressionService\\ImpressionService.cs",
               "RelativeDocumentMoniker": "socialmedia\\Repositories\\ImpressionService\\ImpressionService.cs",
@@ -130,8 +126,7 @@
               "RelativeToolTip": "socialmedia\\Repositories\\ImpressionService\\ImpressionService.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T15:35:25.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-03T15:35:25.124Z"
             },
             {
               "$type": "Document",
@@ -147,25 +142,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\CommentController.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\CommentController.cs",
               "RelativeToolTip": "socialmedia\\Controllers\\CommentController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAC8AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T15:21:01.329Z"
+              "WhenOpened": "2025-08-03T15:21:01.329Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "CommentService.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Repositories\\CommentService\\CommentService.cs",
               "RelativeDocumentMoniker": "socialmedia\\Repositories\\CommentService\\CommentService.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Repositories\\CommentService\\CommentService.cs",
               "RelativeToolTip": "socialmedia\\Repositories\\CommentService\\CommentService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBMAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBAAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T15:17:32.989Z"
             },
@@ -183,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\AccountController.cs",
@@ -195,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "PostController.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\socialmedia\\Backend\\socialmedia\\Controllers\\PostController.cs",
               "RelativeDocumentMoniker": "socialmedia\\Controllers\\PostController.cs",

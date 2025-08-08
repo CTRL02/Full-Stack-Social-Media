@@ -153,6 +153,12 @@
   gap: 1rem;
   padding-top: 2rem;
 }
+.member-profile-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
 
 .social-links {
   display: flex;
@@ -171,65 +177,16 @@
   margin-top: 2rem;
 }
 
-.post {
-  background: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  border: 1px solid var(--bs-border-color);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  width: 100%;
-  max-width: 600px;
-  transition: background-color 0.3s;
-}
 
 
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
-}
-.post-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-}
 
-.post-username {
-  font-weight: 600;
-}
-.post-date {
-  font-size: 0.85rem;
-  color: var(--bs-secondary-color);
-}
-
-.post-content p {
-  margin: 0;
-  color: var(--bs-body-color);
-}
-
-.btn-light {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  border: 1px solid var(--bs-border-color);
-}
-  .btn-light:hover {
-    background-color: var(--bs-primary-bg-subtle);
-  }
 .posts-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
 }
-.reaction-selected {
-  border: 2px solid var(--bs-primary); /* or another color for highlighting */
-  background-color: var(--bs-primary-bg-subtle);
-  color: var(--bs-primary);
-  font-weight: 500;
-}
+
 
 
 
@@ -238,75 +195,6 @@
     color: var(--bs-primary);
   }
 
-.btn {
-  width: auto;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-}
-.like-wrapper {
-  position: relative;
-}
-
-.reactions-menu {
-  display: none;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  background-color: var(--bs-body-bg);
-  border: 1px solid var(--bs-border-color);
-  padding: 0.5rem 0.75rem;
-  border-radius: 50px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  white-space: nowrap;
-}
-
-.reaction-icon {
-  width: 24px;
-  height: 24px;
-  margin: 0 4px;
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-}
-
-/* Show the menu when hovering anywhere over the like-wrapper */
-
-.like-wrapper:hover .reactions-menu {
-  display: flex !important;
-}
-
-
-.reaction-container {
-  position: relative;
-  z-index: 5;
-}
-
-.reactions-menu img {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.reaction-icon {
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-.reactions-menu {
-  display: none;
-  top: 100%; /* show below button */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-  .reaction-icon:hover {
-    transform: scale(1.2);
-  }
-.reaction-container:hover .reactions-menu,
-.reactions-menu:hover {
-  display: flex;
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

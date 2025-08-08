@@ -1,1 +1,30 @@
-<p>reaction-section works!</p>
+<div class="reaction-section-container position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
+  <div class="reaction-window p-3" style="width: 500px; max-height: 80vh;">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+      <!-- Reaction types slider -->
+      <div class="reaction-types">
+        <img *ngFor="let r of reactionTypes"
+             [src]="reactionIcons[r]"
+             [alt]="r"
+             class="reaction-icon"
+             [class.active]="selectedType === r"
+             (click)="selectReaction(r)" />
+      </div>
+      <button class="btn-close" (click)="close.emit()"></button>
+    </div>
+
+    <!-- List -->
+    <div class="user-list" *ngIf="filteredImpressions.length > 0; else noData">
+      <div *ngFor="let imp of filteredImpressions" class="user-item">
+        <img [src]="imp.avatar || 'assets/default.jpg'" class="rounded-circle" width="32" height="32" />
+        <span>{{ imp.username }}</span>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="text-muted">No reactions found.</p>
+    </ng-template>
+  </div>
+</div>

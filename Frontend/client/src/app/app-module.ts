@@ -22,6 +22,7 @@ import { HttpClient } from '@angular/common/http';
 import { authInterceptor } from './interceptor/auth-interceptor';
 import { ReactionSection } from './memeber-profile/reaction-section/reaction-section';
 import { CommentSection } from './memeber-profile/comment-section/comment-section';
+import { Post } from './memeber-profile/post/post';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ServerError,
     ReactionSection,
     CommentSection,
+    Post
     
   ],
   imports: [

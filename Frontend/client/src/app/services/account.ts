@@ -15,7 +15,19 @@ export class Account {
 
  
 
-  
+  getUsernameFromToken(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.unique_name || payload.sub || null;
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return null;
+    }
+  }
+
   login(logModel: authModel) {
     return this.http.post<userModel>(this.baseUrl + 'login', logModel).pipe(
       map((user: userModel) => {

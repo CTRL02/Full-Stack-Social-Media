@@ -10,10 +10,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Account } from '../services/account';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService, private router: Router) { }
+  constructor(private toastr: ToastrService, private router: Router, private authService: Account) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
@@ -24,7 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
           case 401:
             this.toastr.warning('Please login again', 'Unauthorized');
-            this.router.navigate(['/']);
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            this.authService.setCurrentUser(null);
+            this.router.navigate(['']);
             break;
           case 403:
             this.toastr.error('Access denied', 'Forbidden');

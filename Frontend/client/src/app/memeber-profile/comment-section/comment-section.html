@@ -5,6 +5,19 @@
       <button class="btn-close" (click)="close.emit()"></button>
     </div>
     <hr />
+
+    <!-- New comment input -->
+    <div class="mb-3">
+      <textarea [(ngModel)]="newCommentContent"
+                placeholder="Write a comment..."
+                class="form-control"
+                rows="2"></textarea>
+      <button class="btn btn-primary btn-sm mt-2 float-end"
+              (click)="submitComment()">
+        Post Comment
+      </button>
+    </div>
+
     <div class="body">
       <ng-container *ngIf="postData?.length; else noComments">
         <div class="comment" *ngFor="let comment of postData">
@@ -20,6 +33,24 @@
             <div class="impressions d-flex gap-2 mb-2">
               <small class="text-muted">{{ comment.impressions?.length || 0 }}</small>
               <small title="Like">👍</small>
+            </div>
+
+            <!-- Reply toggle -->
+            <button class="btn btn-link btn-sm text-decoration-none p-0"
+                    (click)="replyingTo === comment.id ? replyingTo = null : replyingTo = comment.id">
+              Reply
+            </button>
+
+            <!-- Reply input -->
+            <div *ngIf="replyingTo === comment.id" class="mt-2">
+              <textarea [(ngModel)]="replyContent"
+                        placeholder="Write a reply..."
+                        class="form-control"
+                        rows="2"></textarea>
+              <button class="btn btn-success btn-sm mt-1"
+                      (click)="submitReply(comment.id)">
+                Reply
+              </button>
             </div>
           </div>
 
@@ -39,12 +70,9 @@
                   <small class="text-muted">{{ reply.impressions?.length || 0 }}</small>
                   <small title="Like">👍</small>
                 </div>
-
-
               </div>
             </ng-container>
           </div>
-
           <hr />
         </div>
       </ng-container>

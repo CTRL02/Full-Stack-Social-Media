@@ -64,7 +64,7 @@
             <li *ngFor="let user of filteredUsers"
                 class="dropdown-item d-flex align-items-center"
                 (mousedown)="goToUserProfile(user)">
-              <img [src]="user.avatar" class="rounded-circle me-2" width="30" height="30" />
+              <img [src]="user.avatar || 'assets/default.jpg'" class="rounded-circle me-2" width="30" height="30" />
               <span>{{ user.username }}</span>
             </li>
           </ul>

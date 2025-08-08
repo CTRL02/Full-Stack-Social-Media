@@ -15,16 +15,9 @@ import { UserActions } from '../services/user-actions';
 export class MemeberProfile {
   user: UserProfile | null = null;
   private destroy$ = new Subject<void>();
-  selectedReactions: { [postId: number]: string } = {};
-  reactionIcons: { [key: string]: string } = {
-    Like: 'assets/reactions/like.png',
-    Love: 'assets/reactions/love.png',
-    Care: 'assets/reactions/care.png',
-    Sad: 'assets/reactions/sad.png',
-    Angry: 'assets/reactions/angry.png'
-  };
 
-  constructor(private router: Router, private userService: User, private route: ActivatedRoute, private userAction: UserActions) { }
+
+  constructor(private router: Router, private userService: User, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
@@ -49,24 +42,7 @@ export class MemeberProfile {
     this.destroy$.complete();
   }
 
-  leaveImpression(type:string, postId: number, commentId?: number) {
-    const dto = postId ? { type, postId } : { type, commentId };
-    console.log(dto);
 
-    this.userAction.toggleImpression(dto).subscribe({
-      next: (response) => {
-        console.log(response.message); 
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-    if (this.selectedReactions[postId] === type) {
-      delete this.selectedReactions[postId];
-    } else {
-      this.selectedReactions[postId] = type;
-    }
-  }
 
 
 
@@ -78,16 +54,7 @@ export class MemeberProfile {
     return 'fas fa-globe'; 
   }
 
-  //comment section pop up window
-  openPostId: number | null = null;
 
-  openComments(postId: number) {
-    this.openPostId = postId;
-  }
-
-  closeComments() {
-    this.openPostId = null;
-  }
 
   
 }
