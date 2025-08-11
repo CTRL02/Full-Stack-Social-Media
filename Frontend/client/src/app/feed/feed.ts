@@ -1,4 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ProfilePostDto } from '../models/ProfilePostDto';
+import { UserActions } from '../services/user-actions';
+import { feedModel } from '../models/feedModel';
+import { Account } from '../services/account';
+import { identity } from 'rxjs';
 
 interface Post {
   username: string;
@@ -16,30 +21,38 @@ interface Post {
   encapsulation: ViewEncapsulation.None
 })
 export class Feed {
-  posts: Post[] = [];
+  feedPosts: { post: ProfilePostDto; user: { username: string; avatar: string } }[] = [];
 
+  constructor(private feedService: UserActions, private accountService: Account) { }
   ngOnInit(): void {
-    this.generateFakePosts(10);
+    const username = this.accountService.getUsernameFromToken();
+
+    this.feedService.getRecommendedPosts(username, 4).subscribe({
+      next: (apiPosts) => {
+        this.feedPosts = apiPosts.map(p => {
+          const user = {
+            username: p.UserName || '',
+            avatar: p.avatar || 'assets/default.jpg'
+          };
+
+          const post: ProfilePostDto = {
+            id: p.Id,                       
+            content: p.Content,          
+            createdAt: new Date(p.CreatedAt).toISOString(),
+            impressions: p.impressions ?? [],
+            comments: p.comments ?? []
+          };
+
+          return { post, user };
+        });
+      },
+      error: err => {
+        console.error('Failed to fetch recommendations', err);
+      }
+    });
   }
 
-  generateFakePosts(count: number): void {
-    const usernames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'];
-    const captions = [
-      'What a day!',
-      'Feeling good 😊',
-      'Just finished this!',
-      'Loving this view!',
-      'Random thought 💭'
-    ];
 
-    for (let i = 0; i < count; i++) {
-      this.posts.push({
-        username: usernames[Math.floor(Math.random() * usernames.length)],
-        avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
-        image: `https://picsum.photos/seed/${Math.floor(Math.random() * 1000)}/600/400`,
-        caption: captions[Math.floor(Math.random() * captions.length)],
-        timestamp: new Date(Date.now() - Math.floor(Math.random() * 86400000)) // last 24 hrs
-      });
-    }
-  }
+
+
 }

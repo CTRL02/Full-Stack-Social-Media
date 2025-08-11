@@ -12,17 +12,60 @@
 <div class="register-wrapper my-5" *ngIf="showRegisterForm" #registerFormContainer>
   <h2>{{ 'HOME.REGISTRATION' | translate }}</h2>
   <form (ngSubmit)="register()" #registerForm="ngForm">
-    <div class="input-box">
-      <input type="text" [placeholder]="'HOME.ENTER_NAME' | translate" name="username" required [(ngModel)]="model.username">
+
+    <!-- Profile Picture Upload -->
+    <div class="profile-upload">
+      <img alt="User Pic"
+           [src]="avatarPreviewUrl || 'https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png'"
+           id="profile-image1"
+           height="100"
+           class="profile-preview">
+      <input id="profile-image-upload" type="file" (change)="onFileSelected($event)">
     </div>
+
+    <!-- Username -->
     <div class="input-box">
-      <input type="password" [placeholder]="'HOME.CREATE_PASSWORD' | translate" name="password" required [(ngModel)]="model.password">
+      <input type="text"
+             [placeholder]="'HOME.ENTER_NAME' | translate"
+             name="username"
+             required
+             [(ngModel)]="model.username">
     </div>
+
+    <!-- Password -->
+    <div class="input-box">
+      <input type="password"
+             [placeholder]="'HOME.CREATE_PASSWORD' | translate"
+             name="password"
+             required
+             [(ngModel)]="model.password">
+    </div>
+
+    <!-- Title -->
+    <div class="input-box">
+      <input type="text"
+             placeholder="Enter your title"
+             name="title"
+             [(ngModel)]="model.title">
+    </div>
+
+    <!-- Bio -->
+    <div class="input-box">
+      <textarea placeholder="Enter your bio"
+                name="bio"
+                [(ngModel)]="model.bio"
+                rows="3"></textarea>
+    </div>
+
+    <!-- Submit -->
     <div class="input-box button">
-      <input type="submit" [value]="'HOME.REGISTER_NOW' | translate" [disabled]="registerForm.invalid">
+      <input type="submit"
+             [value]="'HOME.REGISTER_NOW' | translate"
+             [disabled]="registerForm.invalid">
     </div>
   </form>
 </div>
+
 
 <section class="content-section" *ngIf="!showRegisterForm">
   <div class="content-container">

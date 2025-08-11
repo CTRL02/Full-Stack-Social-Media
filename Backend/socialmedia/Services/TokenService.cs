@@ -1,4 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using socialmedia.DTOs;
 using socialmedia.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,11 +10,11 @@ namespace socialmedia.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly IConfiguration _config;
+        private readonly JwtSettings _jwtSettings;
 
-        public TokenService(IConfiguration config)
+        public TokenService(IOptions<JwtSettings> jwtOptions)
         {
-            _config = config;
+            _jwtSettings = jwtOptions.Value;
         }
 
         public string CreateToken(AppUser user)
@@ -23,15 +25,15 @@ namespace socialmedia.Services
                 new Claim(ClaimTypes.Name, user.UserName)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_config["JwtSettings:ExpiresInMinutes"])),
-                Issuer = _config["JwtSettings:Issuer"],
-                Audience = _config["JwtSettings:Audience"],
+                Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_jwtSettings.ExpiresInMinutes)),
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
                 SigningCredentials = creds
             };
 

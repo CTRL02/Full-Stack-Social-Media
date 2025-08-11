@@ -1,5 +1,7 @@
 export interface registerUser {
   username: string;
-  avatar: string;
+  avatar: File|null;
   password: string;
+  title: string;
+  bio: string;
 }

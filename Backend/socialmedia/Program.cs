@@ -12,6 +12,7 @@ using socialmedia.Entities;
 using socialmedia.Repositories.ImpressionService;
 using socialmedia.Repositories.CommentService;
 using Microsoft.Extensions.Options;
+using socialmedia.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,8 +68,9 @@ builder.Services.AddDbContext<DBContext>(options =>
         })
     .LogTo(Console.WriteLine, LogLevel.Information)
 );
-
+//configure services here 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
 
 //DI
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -78,7 +80,6 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IUserFollowService, UserFollowService>();
 builder.Services.AddScoped<ImpressionService>();
 builder.Services.AddScoped<CommentService>();
-
 
 
 
@@ -133,10 +134,4 @@ app.Run();
 
 
 
-public class JwtSettings
-{
-    public string Key { get; set; }
-    public string Issuer { get; set; }
-    public string Audience { get; set; }
-    public int ExpiresInMinutes { get; set; }
-}
+

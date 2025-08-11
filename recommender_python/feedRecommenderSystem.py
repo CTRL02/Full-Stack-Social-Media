@@ -1,14 +1,18 @@
+from flask import Flask, request, jsonify
 from sqlalchemy import create_engine, text
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app, resources={r"/recommend": {"origins": "http://localhost:4200"}})
 
 connection_string = (
     "mssql+pyodbc:///?"
     "odbc_connect=DRIVER={ODBC Driver 17 for SQL Server};"
-    r"SERVER=np:\\.\pipe\LOCALDB#D83266DC\tsql\query;"
+    "SERVER=(localdb)\\MyLocalDBInstance;"
     "DATABASE=socialmediapp;"
     "Trusted_Connection=yes;"
     "MARS_Connection=yes"
@@ -16,13 +20,13 @@ connection_string = (
 
 engine = create_engine(connection_string)
 
+
 def get_user_id(conn, username):
     result = conn.execute(
         text("SELECT Id FROM Users WHERE UserName = :uname"),
         {"uname": username}
     ).fetchone()
     return result[0] if result else None
-
 
 def get_user_liked_posts(conn, user_id):
     query = text("""
@@ -36,10 +40,9 @@ def get_user_liked_posts(conn, user_id):
     """)
     return pd.read_sql(query, conn, params={"uid": user_id})
 
-
 def get_all_posts(conn):
     query = text("""
-        SELECT p.Id, p.Content, u.UserName, u.avatar
+        SELECT p.Id, p.Content, u.UserName, u.avatar , p.CreatedAt
         FROM Posts p
         JOIN Users u ON p.AppUserId = u.Id
     """)
@@ -49,13 +52,11 @@ def recommend_posts(username, top_n=5):
     with engine.connect() as conn:
         user_id = get_user_id(conn, username)
         if not user_id:
-            print("User not found.")
-            return pd.DataFrame()
+            return []
 
         liked_posts = get_user_liked_posts(conn, user_id)
         if liked_posts.empty:
-            print("No liked posts for this user.")
-            return pd.DataFrame()
+            return []
 
         all_posts = get_all_posts(conn)
 
@@ -69,11 +70,20 @@ def recommend_posts(username, top_n=5):
     all_posts['similarity'] = similarities
 
     recommendations = all_posts[all_posts['UserName'] != username]
-    return recommendations.sort_values(by='similarity', ascending=False).head(top_n)
+    top_recs = recommendations.sort_values(by='similarity', ascending=False).head(top_n)
 
-recs = recommend_posts("user7", top_n=8)
-pd.set_option("display.max_columns", None)
-pd.set_option("display.width", None)      
-pd.set_option("display.max_rows", None)     
-print(recs)
+    return top_recs.to_dict(orient="records")
 
+@app.route("/recommend", methods=["GET"])
+def recommend():
+    username = request.args.get("username")
+    top_n = request.args.get("top_n", default=5, type=int)
+
+    if not username:
+        return jsonify({"error": "username parameter is required"}), 400
+
+    results = recommend_posts(username, top_n=top_n)
+    return jsonify(results)
+
+if __name__ == "__main__":
+    app.run(debug=True)

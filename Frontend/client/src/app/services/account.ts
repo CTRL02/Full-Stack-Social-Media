@@ -46,8 +46,8 @@ export class Account {
   }
 
 
-  register(regModel: registerUser) {
-    return this.http.post<userModel>(this.baseUrl + 'register', regModel).pipe(
+  register(formData: FormData) {
+    return this.http.post<userModel>(this.baseUrl + 'register', formData).pipe(
       map((user: userModel) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));

@@ -1,6 +1,9 @@
 ﻿// Services/AccountService.cs
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using socialmedia.Data;
 using socialmedia.DTOs;
 using socialmedia.Entities;
@@ -13,11 +16,19 @@ public class AccountService : IAccountService
 {
     private readonly DBContext _context;
     private readonly ITokenService _tokenService;
+    private readonly Cloudinary _cloudinary;
 
-    public AccountService(DBContext context, ITokenService tokenService)
+    public AccountService(DBContext context, ITokenService tokenService, IOptions<CloudinarySettings> config)
     {
+        var account = new Account(
+            config.Value.CloudName,
+            config.Value.ApiKey,
+            config.Value.ApiSecret
+        );
+        
         _context = context;
         _tokenService = tokenService;
+        _cloudinary = new Cloudinary(account);
     }
 
     public async Task<ActionResult<UserDto>> Register(RegisterDto dto)
@@ -27,12 +38,21 @@ public class AccountService : IAccountService
 
         using var hmac = new HMACSHA512();
 
+        var uploadParams = new ImageUploadParams
+        {
+            File = new FileDescription(dto.Photo.FileName, dto.Photo.OpenReadStream()),
+            Folder = "profile_photos"
+        };
+        var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
         var user = new AppUser
         {
             UserName = dto.Username.ToLower(),
-            avatar = dto.avatar,
+            avatar = uploadResult.SecureUrl.AbsoluteUri,
             PasswordSalt = hmac.Key,
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password))
+            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password)),
+            Bio = dto.bio,
+            Title = dto.title
         };
 
         _context.Users.Add(user);

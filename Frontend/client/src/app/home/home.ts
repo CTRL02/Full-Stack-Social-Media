@@ -6,6 +6,7 @@ import { User } from '../services/user';
 import { Account } from '../services/account';
 import { NgForm } from '@angular/forms';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +16,14 @@ import { Toast, ToastrService } from 'ngx-toastr';
   encapsulation: ViewEncapsulation.None
 })
 export class Home {
-  model: registerUser = ({ username: '', avatar: '', password: '' });
+  model: registerUser = ({ username: '', avatar: null, password: '' , title: '', bio: '' });
   errorMsg: string = '';
+  selectedFile: File| null = null;
+  avatarPreviewUrl: string | ArrayBuffer | null = null;
 
-  constructor(private userService: User, private accountService: Account, private toastr: ToastrService) { }
+
+
+  constructor(private userService: User, private accountService: Account, private toastr: ToastrService,private router: Router) { }
 
   contentItems = [
     {
@@ -49,7 +54,21 @@ export class Home {
     }, 100);
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
 
+      // Preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.avatarPreviewUrl = reader.result; // This will update the <img> tag
+      };
+      reader.readAsDataURL(file);
+
+      this.model.avatar = file;
+    }
+  }
 
   ngOnInit() {
     this.sectionInView = new Array(this.contentItems.length).fill(false);
@@ -85,13 +104,26 @@ export class Home {
 
 
   register() {
-    this.model.avatar=this.userService.getRandomAvatar();
-    this.accountService.register(this.model).subscribe({
+    const formData = new FormData();
+
+    formData.append('Username', this.model.username);
+    formData.append('Password', this.model.password);
+    formData.append('title', this.model.title);
+    formData.append('bio', this.model.bio);
+
+    if (this.selectedFile) {
+      formData.append('Photo', this.selectedFile);
+    }
+
+    this.accountService.register(formData).subscribe({
       next: user => {
         if (user) {
           this.toastr.success('Registration successful as ' + user.username);
+          this.avatarPreviewUrl = null;
+          this.router.navigate(['feed']);
         }
         this.errorMsg = '';
+        this.registerForm.resetForm();
       },
       error: err => {
         if (err.status === 400) {
@@ -103,8 +135,6 @@ export class Home {
         }
       }
     });
-    this.registerForm.resetForm();
-
   }
 
 
