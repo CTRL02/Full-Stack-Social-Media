@@ -1,4 +1,5 @@
 ﻿// Services/AccountService.cs
+using AutoMapper;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +18,16 @@ public class AccountService : IAccountService
     private readonly DBContext _context;
     private readonly ITokenService _tokenService;
     private readonly Cloudinary _cloudinary;
+    private readonly IMapper _mapper;
 
-    public AccountService(DBContext context, ITokenService tokenService, IOptions<CloudinarySettings> config)
+    public AccountService(DBContext context, ITokenService tokenService, IOptions<CloudinarySettings> config, IMapper mapper)
     {
         var account = new Account(
             config.Value.CloudName,
             config.Value.ApiKey,
             config.Value.ApiSecret
         );
-        
+        _mapper = mapper;
         _context = context;
         _tokenService = tokenService;
         _cloudinary = new Cloudinary(account);
@@ -37,26 +39,28 @@ public class AccountService : IAccountService
             return new BadRequestObjectResult("UsernameExists");
 
         using var hmac = new HMACSHA512();
+        string? avatarUrl = null;
 
-        var uploadParams = new ImageUploadParams
+        if (dto.Photo != null && dto.Photo.Length > 0)
         {
-            File = new FileDescription(dto.Photo.FileName, dto.Photo.OpenReadStream()),
-            Folder = "profile_photos"
-        };
-        var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            var uploadParams = new ImageUploadParams
+            {
+                File = new FileDescription(dto.Photo.FileName, dto.Photo.OpenReadStream()),
+                Folder = "profile_photos"
+            };
+            var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            avatarUrl = uploadResult.SecureUrl.AbsoluteUri;
+        }
 
-        var user = new AppUser
-        {
-            UserName = dto.Username.ToLower(),
-            avatar = uploadResult.SecureUrl.AbsoluteUri,
-            PasswordSalt = hmac.Key,
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password)),
-            Bio = dto.bio,
-            Title = dto.title
-        };
+
+        var user = _mapper.Map<AppUser>(dto);
+        user.avatar = avatarUrl;
+        user.PasswordSalt = hmac.Key;
+        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password));
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
+
 
         var token = _tokenService.CreateToken(user);
 

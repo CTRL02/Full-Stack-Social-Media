@@ -13,6 +13,7 @@ using socialmedia.Repositories.ImpressionService;
 using socialmedia.Repositories.CommentService;
 using Microsoft.Extensions.Options;
 using socialmedia.DTOs;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,7 +81,7 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IUserFollowService, UserFollowService>();
 builder.Services.AddScoped<ImpressionService>();
 builder.Services.AddScoped<CommentService>();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 

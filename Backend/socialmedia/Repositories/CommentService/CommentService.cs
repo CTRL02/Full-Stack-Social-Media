@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using socialmedia.Data;
 using socialmedia.DTOs;
 using socialmedia.Entities;
@@ -8,10 +9,11 @@ namespace socialmedia.Repositories.CommentService
     public class CommentService
     {
         private readonly DBContext _context;
-
-        public CommentService(DBContext context)
+        private readonly IMapper _mapper;
+        public CommentService(DBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<string> LeaveCommentAsync(int userId, CommentDto dto)
@@ -36,14 +38,11 @@ namespace socialmedia.Repositories.CommentService
                     throw new InvalidOperationException("ParentCommentMismatch");
             }
 
-            var comment = new Comment
-            {
-                Content = dto.Content.Trim(),
-                CreatedAt = DateTime.UtcNow,
-                AppUserId = userId,
-                PostId = dto.PostId,
-                ParentCommentId = dto.ParentCommentId
-            };
+            var comment = _mapper.Map<Comment>(dto);
+            comment.Content = comment.Content.Trim();
+            comment.CreatedAt = DateTime.UtcNow;
+            comment.AppUserId = userId;
+
 
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
