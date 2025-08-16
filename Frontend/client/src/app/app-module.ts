@@ -23,6 +23,8 @@ import { authInterceptor } from './interceptor/auth-interceptor';
 import { ReactionSection } from './memeber-profile/reaction-section/reaction-section';
 import { CommentSection } from './memeber-profile/comment-section/comment-section';
 import { Post } from './memeber-profile/post/post';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './interceptor/loading-interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -59,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgxSpinnerModule,
 
     
 
@@ -78,7 +81,16 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
+    },
+
+    //loading screen interceptor
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
     }
+  
+   
   ],
   bootstrap: [App]
 })

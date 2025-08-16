@@ -16,11 +16,6 @@ export class User {
     return this.http.get<allUsersModel[]>(this.baseUrl + 'getusers');
   }
 
-  getRandomAvatar(): string {
-    const randomId = Math.floor(Math.random() * 70) + 1;
-    return `https://i.pravatar.cc/150?img=${randomId}`;
-  }
-
 
   getUserIdFromToken(token: string): number | null {
 

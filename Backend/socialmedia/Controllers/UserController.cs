@@ -24,6 +24,14 @@ public class UserController : ControllerBase
         return user != null ? Ok(user) : NotFound();
     }
 
+    [HttpGet("name/duplicate/{username}")]
+    public async Task<ActionResult<AppUser>> GetUserByNameDuplicate(string username)
+    {
+        var user = await _userService.GetUserByNameDuplicate(username);
+        return user != null ? Ok(user) : NotFound();
+
+    }
+
     [HttpGet("name/{username}")]
     public async Task<ActionResult<userProfileDto>> GetUserByUsername(string username)
     {

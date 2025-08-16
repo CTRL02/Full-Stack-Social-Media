@@ -17,6 +17,7 @@
   }
 ]</PackageJsonPrettierOverrides>
     <PackageJsonPrivate Condition="$(PackageJsonPrivate) == ''">true</PackageJsonPrivate>
+    <PackageJsonDependenciesAngularCdk Condition="$(PackageJsonDependenciesAngularCdk) == ''">^20.1.5</PackageJsonDependenciesAngularCdk>
     <PackageJsonDependenciesAngularCommon Condition="$(PackageJsonDependenciesAngularCommon) == ''">^20.0.0</PackageJsonDependenciesAngularCommon>
     <PackageJsonDependenciesAngularCompiler Condition="$(PackageJsonDependenciesAngularCompiler) == ''">^20.0.0</PackageJsonDependenciesAngularCompiler>
     <PackageJsonDependenciesAngularCore Condition="$(PackageJsonDependenciesAngularCore) == ''">^20.0.0</PackageJsonDependenciesAngularCore>
@@ -34,6 +35,7 @@
     <PackageJsonDependenciesJquerySticky Condition="$(PackageJsonDependenciesJquerySticky) == ''">^1.0.4</PackageJsonDependenciesJquerySticky>
     <PackageJsonDependenciesJwtDecode Condition="$(PackageJsonDependenciesJwtDecode) == ''">^4.0.0</PackageJsonDependenciesJwtDecode>
     <PackageJsonDependenciesNgxBootstrap Condition="$(PackageJsonDependenciesNgxBootstrap) == ''">^20.0.0</PackageJsonDependenciesNgxBootstrap>
+    <PackageJsonDependenciesNgxSpinner Condition="$(PackageJsonDependenciesNgxSpinner) == ''">^19.0.0</PackageJsonDependenciesNgxSpinner>
     <PackageJsonDependenciesNgxToastr Condition="$(PackageJsonDependenciesNgxToastr) == ''">^19.0.0</PackageJsonDependenciesNgxToastr>
     <PackageJsonDependenciesPopperJs Condition="$(PackageJsonDependenciesPopperJs) == ''">^1.16.1</PackageJsonDependenciesPopperJs>
     <PackageJsonDependenciesRxjs Condition="$(PackageJsonDependenciesRxjs) == ''">~7.8.0</PackageJsonDependenciesRxjs>

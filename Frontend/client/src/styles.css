@@ -8,10 +8,8 @@ body.home-no-navbar .main-content {
   background-color: var(--bs-body-bg);
 }
 
-
-
-[data-bs-theme="light"]{
-  --bs-border-color: #339af0; /* Brighter blue for dark mode */
+[data-bs-theme="light"] {
+  --bs-border-color: #339af0; /* Brighter blue for light mode */
 }
 
 body, .app-wrapper {
@@ -19,3 +17,5 @@ body, .app-wrapper {
   color: var(--bs-body-color);
   min-height: 100vh;
 }
+
+

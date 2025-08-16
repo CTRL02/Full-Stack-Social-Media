@@ -17,6 +17,8 @@
         public ICollection<SocialLink> SocialLinks { get; set; } = new List<SocialLink>();
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public ICollection<Impression> Impressions { get; set; } = new List<Impression>();
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
 
     }
 }

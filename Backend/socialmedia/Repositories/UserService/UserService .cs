@@ -25,6 +25,11 @@ public class UserService : IUserService
         return await _context.Users.FindAsync(id);
     }
 
+    public async Task<AppUser> GetUserByNameDuplicate(string username)
+    {
+        return await _context.Users.Where(u => u.UserName.ToLower() == username.ToLower()).FirstOrDefaultAsync();
+    }
+
     public async Task<userProfileDto?> GetUserByUsername(string username)
     {
 

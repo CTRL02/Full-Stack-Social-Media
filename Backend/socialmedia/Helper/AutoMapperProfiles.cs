@@ -48,6 +48,18 @@ namespace socialmedia.Helper
                 .ForMember(dest => dest.avatar, opt => opt.MapFrom(src => src.AppUser.avatar))
                 .ForMember(dest => dest.Replies, opt => opt.MapFrom(src => src.Replies));
 
+
+
+            CreateMap<Message, MessageDto>()
+                .ForMember(dest => dest.SenderUsername, opt => opt.MapFrom(src => src.Sender.UserName))
+                .ForMember(dest => dest.senderPhotoUrl, opt => opt.MapFrom(src => src.Sender.avatar))
+                .ForMember(dest => dest.RecipientUsername, opt => opt.MapFrom(src => src.Recipient.UserName))
+                .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.avatar))
+                .ForMember(dest => dest.MessageSent, opt => opt.MapFrom(src => src.SentAt))
+                .ForMember(dest => dest.DateRead, opt => opt.MapFrom(src => src.ReadAt));
+
+
+
             CreateMap<Post, profilepostDto>()
                 .ForMember(dest => dest.Comments,
                     opt => opt.MapFrom(src =>

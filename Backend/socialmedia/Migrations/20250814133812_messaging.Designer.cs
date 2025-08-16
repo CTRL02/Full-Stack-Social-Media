@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using socialmedia.Data;
 
@@ -11,9 +12,11 @@ using socialmedia.Data;
 namespace socialmedia.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20250814133812_messaging")]
+    partial class messaging
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,19 +178,11 @@ namespace socialmedia.Migrations
                     b.Property<int>("RecipientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RecipientUsername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("SenderId")
                         .HasColumnType("int");
-
-                    b.Property<string>("SenderUsername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("SentAt")
                         .HasColumnType("datetime2");

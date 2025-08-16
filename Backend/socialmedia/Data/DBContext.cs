@@ -69,6 +69,19 @@ namespace socialmedia.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
 
+            //messaging
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.MessagesSent)
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Recipient)
+                .WithMany(u => u.MessagesReceived)
+                .HasForeignKey(m => m.RecipientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             // Indexes
             modelBuilder.Entity<AppUser>()
@@ -116,6 +129,6 @@ namespace socialmedia.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Impression> Impressions { get; set; }
 
-
+        public DbSet<Message> Messages { get; set; }
     }
 }

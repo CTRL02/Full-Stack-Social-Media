@@ -11,12 +11,13 @@
     <!-- Sidebar: List of Chats -->
     <div class="chat-sidebar">
       <div class="chat-user"
-           *ngFor="let chat of dummyChats"
+           *ngFor="let chat of chats"
            (click)="selectChat(chat)"
            [class.active]="chat === selectedChat">
         {{ chat.username }}
       </div>
     </div>
+
 
     <!-- Chat Content -->
     <div class="chat-content">
