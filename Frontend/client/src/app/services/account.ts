@@ -4,12 +4,13 @@ import { authModel } from '../models/authmodel';
 import { map, ReplaySubject } from 'rxjs';
 import { userModel  } from '../models/user';
 import { registerUser } from '../models/registerUser';
+import { Presence } from './presence';
 @Injectable({
   providedIn: 'root'
 })
 export class Account {
   baseUrl = 'http://localhost:5080/api/Account/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private presenceServ: Presence) { }
   private currentUser = new ReplaySubject<userModel|null>(1);
   CurrentUser$ = this.currentUser.asObservable();
 
@@ -35,6 +36,7 @@ export class Account {
           localStorage.setItem('user', JSON.stringify(user)); 
           localStorage.setItem('token', user.token);   
           this.currentUser.next(user);
+          this.presenceServ.createHubConnection(user);
         }
         return user;
       })
@@ -53,6 +55,7 @@ export class Account {
           localStorage.setItem('user', JSON.stringify(user));
           localStorage.setItem('token', user.token);
           this.currentUser.next(user);
+          this.presenceServ.createHubConnection(user);
         }
         return user;
       })

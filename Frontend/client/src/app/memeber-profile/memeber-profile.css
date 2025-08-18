@@ -222,3 +222,34 @@
     width: 100%;
   }
 }
+
+/*online/off status*/
+.status-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+  .status-indicator.online {
+    background-color: #4caf50; /* green */
+  }
+
+  .status-indicator.offline {
+    background-color: #bbb; /* grey */
+  }
+
+.online-text {
+  color: #4caf50;
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+.offline-text {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 8px;
+}

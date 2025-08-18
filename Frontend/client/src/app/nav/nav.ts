@@ -11,6 +11,7 @@ import { allUsersModel } from '../models/allusersModel';
 import { ToastrService } from 'ngx-toastr';
 import { ThemeService } from '../services/darktoggle';
 import { TranslateService } from '@ngx-translate/core';
+import { Presence } from '../services/presence';
 
 @Component({
   selector: 'app-nav',
@@ -32,7 +33,7 @@ export class Nav {
   isDarkMode = false;
   currentLang: string | null = 'en';
 
-  constructor(private themeService: ThemeService, private authServ: Account, private translate: TranslateService
+  constructor(private presenceServ: Presence, private themeService: ThemeService, private authServ: Account, private translate: TranslateService
 , private renderer: Renderer2, private userServ: User, private router: Router, private uiF: UiFunctions,private toastr:  ToastrService ) {
     this.user$ = this.authServ.CurrentUser$;
     this.currentLang = this.translate.currentLang || this.translate.getDefaultLang();
@@ -166,6 +167,7 @@ export class Nav {
     localStorage.removeItem('token');
     this.authData = { username: '', password: '' };
     this.authServ.setCurrentUser(null);
+    this.presenceServ.stopHubConnection();
     this.router.navigate(['/']);
   }
 

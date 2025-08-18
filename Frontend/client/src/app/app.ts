@@ -5,6 +5,7 @@ import { Account } from './services/account';
 import { UiFunctions } from './services/ui-functions';
 import { Observable } from 'rxjs';
 import { ThemeService } from './services/darktoggle';
+import { Presence } from './services/presence';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -17,7 +18,7 @@ export class App {
   currentTheme = 'light';
 
 
-  constructor(private themeService: ThemeService,private HttpClient: HttpClient, private accountServ: Account, private uiFun: UiFunctions,private renderer: Renderer2) {
+  constructor(private themeService: ThemeService, private HttpClient: HttpClient, private accountServ: Account, private uiFun: UiFunctions, private renderer: Renderer2, private presenceServ: Presence) {
     this.showMessages$ = this.uiFun.showMessages$;
   }
 
@@ -34,6 +35,8 @@ export class App {
     if (userJson) {
       const user: userModel = JSON.parse(userJson);
       this.accountServ.setCurrentUser(user);
+      this.presenceServ.createHubConnection(user);
+
     }
   }
 }

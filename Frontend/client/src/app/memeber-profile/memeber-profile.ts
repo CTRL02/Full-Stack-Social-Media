@@ -5,6 +5,7 @@ import { User } from '../services/user';
 import { UserProfile } from '../models/userProfile';
 import { Subject, takeUntil } from 'rxjs';
 import { UserActions } from '../services/user-actions';
+import { Presence } from '../services/presence';
 
 @Component({
   selector: 'app-memeber-profile',
@@ -17,7 +18,7 @@ export class MemeberProfile {
   private destroy$ = new Subject<void>();
 
 
-  constructor(private router: Router, private userService: User, private route: ActivatedRoute) { }
+  constructor(private router: Router, private userService: User, private route: ActivatedRoute, public presence: Presence) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {

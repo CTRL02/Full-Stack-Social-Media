@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using socialmedia.DTOs;
 using AutoMapper;
 using socialmedia.Repositories.MessageService;
+using socialmedia.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,7 +60,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", builder =>
         builder.WithOrigins("http://localhost:4200")
                .AllowAnyMethod()
+               //for signalr to work properly with cookies and headers
+               .AllowCredentials()
                .AllowAnyHeader()));
+
+
+
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(
@@ -75,6 +82,7 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSet
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
 
 //DI
+builder.Services.AddSingleton<PresenceTracker>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -101,6 +109,19 @@ builder.Services.AddAuthentication("Bearer")
             ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
             ValidAudience = builder.Configuration["JwtSettings:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+        };
+        //for the signalr hub presence as it can't access the authorization header directly
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                if (!string.IsNullOrEmpty(accessToken) && context.HttpContext.Request.Path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+                return Task.CompletedTask;
+            }
         };
     });
 
@@ -129,7 +150,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<PresenceHub>("hubs/presence");
 app.Run();
 
 

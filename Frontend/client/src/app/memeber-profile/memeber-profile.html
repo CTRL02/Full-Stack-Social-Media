@@ -2,8 +2,17 @@
   <div class="profile-header">
     <div class="profile-avatar">
       <img [src]="user?.avatar || 'assets/default.jpg'" alt="Profile picture">
+      <span class="status-indicator"
+            [ngClass]="((presence.onlineUsers$ | async) || []).includes(user?.username || '') ? 'online' : 'offline'">
+      </span>
     </div>
-    <h1>{{ user?.username || 'Username' }}</h1>
+    <h1>
+      {{ user?.username || 'Username' }}
+      <span class="online-text"
+            *ngIf="((presence.onlineUsers$ | async) || []).includes(user?.username || '')">🟢 Online</span>
+      <span class="offline-text"
+            *ngIf="!((presence.onlineUsers$ | async) || []).includes(user?.username || '')">⚪ Offline</span>
+    </h1>
     <h2>{{ user?.title || 'Member' }}</h2>
   </div>
 
