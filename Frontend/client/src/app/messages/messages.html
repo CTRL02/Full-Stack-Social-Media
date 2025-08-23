@@ -1,4 +1,4 @@
-<div class="chat-popup-window" [class.minimized]="isMinimized">
+<div *ngIf="isChatOpen" class="chat-popup-window" [class.minimized]="isMinimized">
   <div class="chat-header">
     <span>{{ 'CHAT.MESSAGES' | translate }}</span>
     <div class="chat-controls">
@@ -26,6 +26,9 @@
         <div class="messages">
           <div *ngFor="let msg of selectedChat.messages" class="message">
             <span [class.self]="msg.self">{{ msg.text }}</span>
+
+            {{ msg.isRead ? '✓✓ Read' : '✓ Sent' }}
+
           </div>
         </div>
 

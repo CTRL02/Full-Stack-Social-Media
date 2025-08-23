@@ -28,6 +28,10 @@ export class Presence {
     this.hubConnection.on('GetOnlineUsers', (users: string[]) => {
       this.onlineUsersSource.next(users);
     });
+
+    this.hubConnection.on('NewMessageReceived', (username: string) => {
+      this.toastr.info(username + ' sent you a message');
+    });
   }
 
   stopHubConnection() {

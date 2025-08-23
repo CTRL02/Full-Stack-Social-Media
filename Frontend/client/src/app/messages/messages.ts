@@ -4,6 +4,8 @@ import { MessageService } from '../services/message-service';
 import { CreateMessageDto } from '../models/CreateMessageDto';
 import { MessageDto } from '../models/MessageDto';
 import { Account } from '../services/account';
+import { userModel } from '../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -17,11 +19,27 @@ export class Messages {
   selectedChat: any = null;
   newMessage: string = '';
   chats: { username: string; messages: any[] }[] = [];
+  user: userModel | null = null;
+  isChatOpen: boolean = true;
+  private subscriptions: Subscription[] = [];
+
   constructor(private uiFun: UiFunctions, private messageService: MessageService, private accountServ: Account) { }
+
   ngOnInit() {
-    this.loadChats();
-    console.log("Chats grouped:", this.chats);
+    this.loadChats(); const pendingUsername = this.uiFun.getLastUsername();
+    if (pendingUsername) { setTimeout(() => this.ensureChat(pendingUsername), 300); } this.uiFun.openChat$.subscribe(username => { if (username) { this.ensureChat(username); } });
+  } private ensureChat(username: string) {
+    if (!this.chats.some(c => c.username === username)) {
+      this.chats.push({ username, messages: [] });
+    } const newChat = this.chats.find(c => c.username === username);
+    if (newChat) { this.selectChat(newChat); }
   }
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
+    this.messageService.stopHubConnection();
+  }
+
 
   private loadChats() {
     // Load Inbox + Outbox, merge them
@@ -63,19 +81,38 @@ export class Messages {
     this.isMinimized = false;
     this.selectedChat = null;
     this.uiFun.close();
+    this.messageService.stopHubConnection();
+    this.isChatOpen = false;
   }
  
   selectChat(chat: any) {
     this.selectedChat = chat;
-    this.messageService.getMessageThread(chat.username).subscribe({
-      next: (messages) => {
+
+    this.messageService.createHubConnection(
+      this.accountServ.getCurrentUser()!,
+      chat.username
+    );
+
+    this.subscriptions.forEach(s => s.unsubscribe());
+    this.subscriptions = [];
+
+    const sub = this.messageService.messageThread$.subscribe(messages => {
+      if (this.selectedChat?.username === chat.username) {
         this.selectedChat.messages = messages.map(m => ({
           text: m.content,
-          self: m.senderUsername !== chat.username
+          self: m.senderUsername === this.accountServ.getUsernameFromToken(),
+          isRead: !!m.dateRead, 
+          dateRead: m.dateRead
         }));
+
+        this.messageService.markMessagesAsRead(chat.username);
       }
     });
+
+    this.subscriptions.push(sub);
   }
+
+
 
   sendMessage() {
     if (!this.newMessage.trim() || !this.selectedChat) return;
@@ -85,14 +122,6 @@ export class Messages {
       recipientUsername: this.selectedChat.username
     };
 
-    this.messageService.sendMessage(dto).subscribe({
-      next: (sentMessage) => {
-        this.selectedChat.messages.push({
-          text: sentMessage.content,
-          self: true
-        });
-        this.newMessage = '';
-      }
-    });
+    this.messageService.sendMessage(dto).then(() => this.newMessage = '');
   }
 }

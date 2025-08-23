@@ -6,6 +6,8 @@ import { UserProfile } from '../models/userProfile';
 import { Subject, takeUntil } from 'rxjs';
 import { UserActions } from '../services/user-actions';
 import { Presence } from '../services/presence';
+import { UiFunctions } from '../services/ui-functions';
+import { Account } from '../services/account';
 
 @Component({
   selector: 'app-memeber-profile',
@@ -18,7 +20,7 @@ export class MemeberProfile {
   private destroy$ = new Subject<void>();
 
 
-  constructor(private router: Router, private userService: User, private route: ActivatedRoute, public presence: Presence) { }
+  constructor(private router: Router, private userService: User, private route: ActivatedRoute, public presence: Presence, private uiFun: UiFunctions,public accountServ:Account) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
@@ -43,8 +45,9 @@ export class MemeberProfile {
     this.destroy$.complete();
   }
 
-
-
+  messageUser(username: string) {
+    this.uiFun.openChatWith(username);
+  }
 
 
   getSocialIcon(link: string): string {

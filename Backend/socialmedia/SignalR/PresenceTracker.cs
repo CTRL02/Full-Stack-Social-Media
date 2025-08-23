@@ -44,6 +44,16 @@
             }
             return Task.FromResult(onlineUsers);
         }
+
+        public Task<List<string>> GetConnectionsForUser(string username)
+        {
+            List<string> connections;
+            lock (OnlineUsers)
+            {
+                connections = OnlineUsers.GetValueOrDefault(username);
+            }
+            return Task.FromResult(connections);
+        }
       
     }
 }

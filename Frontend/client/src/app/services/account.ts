@@ -47,6 +47,10 @@ export class Account {
     this.currentUser.next(user);
   }
 
+  getCurrentUser(): userModel | null {
+    const userJson = localStorage.getItem('user');
+    return userJson ? JSON.parse(userJson) as userModel : null;
+  }
 
   register(formData: FormData) {
     return this.http.post<userModel>(this.baseUrl + 'register', formData).pipe(

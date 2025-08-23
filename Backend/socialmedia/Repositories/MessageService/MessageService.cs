@@ -78,5 +78,34 @@ private readonly IMapper _mapper;
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public void addGroup(Group group)
+        {
+            _context.Groups.Add(group);
+        }
+
+        public void removeConnection(Connection connection)
+        {
+            _context.Connections.Remove(connection);
+        }
+
+        public async Task<Connection> GetConnection(string connectionId)
+        {
+            return await _context.Connections.FindAsync(connectionId);
+        }
+
+        public async Task<Group> GetMessageGroup(string groupName)
+        {
+            return await _context.Groups.Include(x => x.connections).FirstOrDefaultAsync(x => x.name== groupName);
+        }
+        public async Task<IEnumerable<Message>> GetUnreadMessages(string currentUsername, string otherUsername)
+        {
+            return await _context.Messages
+                .Where(m => m.RecipientUsername == currentUsername
+                         && m.SenderUsername == otherUsername
+                         && !m.IsRead)
+                .ToListAsync();
+        }
+
     }
 }
